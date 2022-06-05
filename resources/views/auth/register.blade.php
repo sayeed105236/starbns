@@ -12,11 +12,12 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="dist/images/logo.svg" rel="shortcut icon">
+        <link href="{{asset('dist/images/logo.svg')}}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Rubick admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
         <meta name="keywords" content="admin template, Rubick Admin Template, dashboard template, flat admin template, responsive admin template, web app">
         <meta name="author" content="LEFT4CODE">
+          <meta name="csrf-token" content="{{ csrf_token() }}"/>
         <title>StarBns</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{asset('dist/css/app.css')}}" />
@@ -53,6 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="intro-x mt-2 text-slate-400 dark:text-slate-400 xl:hidden text-center">A few more clicks to sign in to your account. </div>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
+
                         <div class="intro-x mt-8">
                             <input type="text" id="name" class="intro-x login__input form-control py-3 px-4 block @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
 
@@ -67,6 +69,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                            <input id="sponsor"  type="text" class="intro-x login__input form-control py-3 px-4 block mt-4 @error('sponsor') is-invalid @enderror"  name="sponsor" value="{{ old('sponsor') }}" required autocomplete="sponsor" autofocus placeholder="Sponsor">
+                            <div id="suggestUser"></div>
+                            @error('sponsor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+
 
                             <input id="email" type="text" class="intro-x login__input form-control py-3 px-4 block mt-4 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
                             @error('email')
@@ -90,9 +100,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- <a href="" class="intro-x text-slate-500 block mt-2 text-xs sm:text-sm">What is a secure password?</a> -->
                             <input id="password-confirm" type="password"  name="password_confirmation" required autocomplete="new-password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password Confirmation">
                         </div>
+
                         <div class="intro-x flex items-center text-slate-600 dark:text-slate-500 mt-4 text-xs sm:text-sm">
                             <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
-                            <label class="cursor-pointer select-none" for="remember-me">I agree to the Envato</label>
+                            <label class="cursor-pointer select-none" for="remember-me">I agree to the StartBns</label>
                             <a class="text-primary dark:text-slate-200 ml-1" href="">Privacy Policy</a>.
                         </div>
                         <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
@@ -115,5 +126,39 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN: JS Assets-->
         <script src="{{asset('dist/js/app.js')}}"></script>
         <!-- END: JS Assets-->
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+</script>
+        <script>
+        $("body").on("keyup", "#sponsor", function () {
+        //alert('success');
+            let searchData = $("#sponsor").val();
+            if (searchData.length > 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{route("get-sponsor")}}',
+                    data: {search: searchData},
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success: function (result) {
+                        $('#suggestUser').html(result.success)
+                        console.log(result.data)
+                        // if (result.data) {
+                        //     $("#position").val("");
+                        //     $("#placement_id").val("");
+                        //     $("#position").removeAttr('disabled');
+                        // } else {
+                        //     $("#position").val("");
+                        //     $("#placement_id").val("");
+                        //     $('#position').prop('disabled', true);
+                        // }
+                    }
+                });
+            }
+            if (searchData.length < 1) $('#suggestUser').html("")
+        })
+
+
+        </script>
     </body>
 </html>

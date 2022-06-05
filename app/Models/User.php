@@ -22,7 +22,12 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
-        'user_name'
+        'user_name',
+        'sponsor',
+        'left_side',
+        'middle_side',
+        'right_side',
+        'status'
     ];
 
     /**
@@ -43,4 +48,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function sponsors()
+    {
+        return $this->belongsTo(User::class,'sponsor');
+    }
 }
