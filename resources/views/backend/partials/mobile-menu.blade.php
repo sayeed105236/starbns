@@ -61,13 +61,25 @@
         <li>
             <a href="{{route('user-lists')}}" class="menu">
                 <div class="menu__icon"> <i data-feather="users"></i> </div>
-                <div class="menu__title"> User Lists </div>
+                <div class="menu__title"> User Lists</div>
             </a>
         </li>
         <li>
             <a href="{{route('package-lists')}}" class="menu">
                 <div class="menu__icon"> <i data-feather="aperture"></i> </div>
-                <div class="menu__title"> Package Settings </div>
+                <div class="menu__title"> Package Settings</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{route('manage-wallet')}}" class="menu">
+                <div class="menu__icon"> <i data-feather="aperture"></i> </div>
+                <div class="menu__title"> Wallet Settings</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{route('manage-deposit')}}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="navigation"></i> </div>
+                <div class="side-menu__title"> Deposit Request</div>
             </a>
         </li>
         <!-- <li>

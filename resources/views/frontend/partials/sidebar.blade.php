@@ -16,40 +16,47 @@
             </a>
 
         </li>
-        <!-- <li>
-            <a href="javascript:;" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="box"></i> </div>
-                <div class="side-menu__title">
-                    Menu Layout
-                    <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
-                </div>
-            </a>
-            <ul class="">
-                <li>
-                    <a href="index.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Side Menu </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Simple Menu </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Top Menu </div>
-                    </a>
-                </li>
-            </ul>
-        </li> -->
+
         <li>
             <a href="/home/my-sponsors/{{Auth::user()->id}}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                 <div class="side-menu__title"> My Sponsors </div>
             </a>
+        </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+                <div class="side-menu__title">
+                  Transaction History
+                    <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="/home/transactions/deposit/{{Auth::user()->id}}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Deposit History </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/transactions/transfer/{{Auth::user()->id}}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Transfer History </div>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Simple Menu </div>
+                    </a>
+                </li> -->
+                <!-- <li>
+                    <a href="top-menu-light-dashboard-overview-1.html" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Top Menu </div>
+                    </a>
+                </li> -->
+            </ul>
         </li>
         <!-- <li>
             <a href="side-menu-light-file-manager.html" class="side-menu">

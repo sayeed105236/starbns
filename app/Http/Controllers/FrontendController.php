@@ -13,4 +13,15 @@ class FrontendController extends Controller
       $users= User::where('sponsor',Auth::id())->get();
       return view('frontend.pages.sponsor_lists',compact('users'));
     }
+    public function getUser(Request $request)
+    {
+
+        $userName = User::where('user_name','like',$request->search)->select('id','user_name')->first();
+        if ($userName){
+            return response()->json(['success'=>'<span style="color: green;">User found!!</span>','data'=>$userName],200);
+        }else{
+            return response()->json(['success'=>'<span style="color: red;">User not found!!</span>'],200);
+        }
+
+    }
 }

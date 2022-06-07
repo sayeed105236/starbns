@@ -15,19 +15,42 @@
                     </h2>
                     <a href="" class="ml-auto flex items-center text-primary"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
                 </div>
+                @if(Session::has('money_added'))
+            <div class="alert alert-success show mb-2" role="alert">Success</div>
+            <div>
+                {{Session::get('money_added')}}
+            </div>
+            @elseif(Session::has('transfer_fund'))
+        <div class="alert alert-success show mb-2" role="alert">Success</div>
+        <div>
+            {{Session::get('transfer_fund')}}
+        </div>
+        @elseif(Session::has('transfer_error'))
+    <div class="alert alert-danger show mb-2" role="alert">Failed</div>
+    <div>
+        {{Session::get('transfer_error')}}
+    </div>
+            @endif
                 <div class="grid grid-cols-12 gap-6 mt-5">
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="flex">
-                                    <i data-feather="credit-card" class="report-box__icon text-pending"></i>
+
+                                      <a href="#" data-tw-toggle="modal" data-tw-target="#addmoneymodal"><i data-feather="plus-square" class="report-box__icon text-pending"></i></a>
+                                      @include('frontend.modals.addmoneymodal')
+                                      <a href="#" data-tw-toggle="modal" data-tw-target="#transfermoneymodal"><i data-feather="send" class="report-box__icon text-pending"></i></a>
+                                        @include('frontend.modals.transfermoneymodal')
                                     <!-- <div class="ml-auto">
                                         <div class="report-box__indicator bg-success tooltip cursor-pointer" title="33% Higher than last month"> 33% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div> -->
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">$0.00</div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$data['sum_deposit'] ? '$'.number_format((float)$data['sum_deposit'], 2, '.', '') : '$00.00'}}</div>
                                 <div class="text-base text-slate-500 mt-1">Deposit Wallet</div>
+
+
                             </div>
+
                         </div>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
@@ -41,6 +64,7 @@
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">$0.00</div>
                                 <div class="text-base text-slate-500 mt-1">Register Wallet</div>
+
                             </div>
                         </div>
                     </div>
@@ -55,6 +79,8 @@
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">$0.00</div>
                                 <div class="text-base text-slate-500 mt-1">Income Wallet</div>
+
+
                             </div>
                         </div>
                     </div>
@@ -769,6 +795,49 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+    //alert('success');
+    //console.log(this.getAttribute('id'));
+    //console.log(e.target.options[e.target.selectedIndex].getAttribute('id'));
+    //var wallet=  document.getElementById("wallet_id");
+    //wallet.innerHTML= id.value;
+    document.getElementById('DestinationOptions').addEventListener('change', function (e) {
+        var wallet2 = e.target.options[e.target.selectedIndex].getAttribute('id');
+        //console.log(wallet2);
+        var wallet = document.getElementById("wallet_id").value = wallet2;
+        //console.log(wallet);
+        //wallet.innerHTML= wallet2;
+    });
+
+    //  document.getElementById('').value(id.value);
 
 
+</script>
+@push('scripts')
+            <script>
+                $("body").on("keyup", "#sponsor", function () {
+                    let searchData = $("#sponsor").val();
+                    if (searchData.length > 0) {
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{route("get-user")}}',
+                            data: {search: searchData},
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            success: function (result) {
+                                $('#suggestUser').html(result.success)
+                                console.log(result.data)
+                                if (result.data) {
+                                    $("#position").val("");
+                                } else {
+                                    $("#position").val("");
+                                }
+                            }
+                        });
+                    }
+                    if (searchData.length < 1) $('#suggestUser').html("")
+                })
+            </script>
+
+@endpush
 @endsection

@@ -76,6 +76,18 @@
                 <div class="side-menu__title"> Package Settings</div>
             </a>
         </li>
+        <li>
+            <a href="{{route('manage-wallet')}}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="credit-card"></i> </div>
+                <div class="side-menu__title"> Wallet Settings</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{route('manage-deposit')}}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="navigation"></i> </div>
+                <div class="side-menu__title"> Deposit Request</div>
+            </a>
+        </li>
         <!-- <li>
             <a href="side-menu-light-file-manager.html" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
