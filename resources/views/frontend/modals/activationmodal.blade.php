@@ -93,7 +93,7 @@
                    <option value="1">Team A</option>
                    @elseif(Auth::user()->middle_side==null)
                     <option value="2">Team C</option>
-                  @elseif
+                  @else
                    @foreach($users as $user)
 
                       @if($user->left_side==null && $user->middle_side==null && $user->right_side==null)
