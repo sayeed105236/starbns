@@ -46,9 +46,9 @@
                 <tr>
                     <th class="whitespace-nowrap">#</th>
 
-                    <th class="whitespace-nowrap">Amount</th>
-                    <th class="whitespace-nowrap">Method</th>
-                    <th class="whitespace-nowrap">Txn Id</th>
+                    <th class="whitespace-nowrap">AMOUNT</th>
+                    <th class="whitespace-nowrap">METHOD</th>
+                    <th class="whitespace-nowrap">TXN ID</th>
 
                     <th class="text-center whitespace-nowrap">STATUS</th>
                     <th class="text-center whitespace-nowrap">APPROVAL/REJECTED DATE</th>

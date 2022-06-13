@@ -43,10 +43,10 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">#</th>
-                    <th class="whitespace-nowrap">Name</th>
-                    <th class="whitespace-nowrap">Email</th>
-                    <th class="whitespace-nowrap">User Name</th>
-                    <th class="whitespace-nowrap">Sponsor</th>
+                    <th class="whitespace-nowrap">NAME</th>
+                    <th class="whitespace-nowrap">EMAIL</th>
+                    <th class="whitespace-nowrap">USER NAME</th>
+                    <th class="whitespace-nowrap">SPONSOR</th>
 
                     <th class="text-center whitespace-nowrap">STATUS</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -82,8 +82,9 @@
                     </td>
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
-                            <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="unlock" class="w-4 h-4 mr-1"></i> Activate </a>
+                            <a href="#"  data-tw-toggle="modal" data-tw-target="#activationmodal{{$row->id}}" class="flex items-center mr-3" href="javascript:;"> <i data-feather="unlock" class="w-4 h-4 mr-1"></i> Activate </a>
                             <!-- <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a> -->
+                            @include('frontend.modals.activationmodal')
                         </div>
                     </td>
                 </tr>
@@ -147,5 +148,38 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+$("body").on("keyup", "#sponsor", function () {
+//alert('success');
+    let searchData = $("#sponsor").val();
+    //alert('success');
+    if (searchData.length > 0) {
+    
+        $.ajax({
+            type: 'POST',
+            url: '{{route("get-placement")}}',
+            data: {search: searchData},
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            success: function (result) {
+                $('#suggestUser').html(result.success)
+                console.log(result.data)
+                // if (result.data) {
+                //     $("#position").val("");
+                //     $("#placement_id").val("");
+                //     $("#position").removeAttr('disabled');
+                // } else {
+                //     $("#position").val("");
+                //     $("#placement_id").val("");
+                //     $('#position').prop('disabled', true);
+                // }
+            }
+        });
+    }
+    if (searchData.length < 1) $('#suggestUser').html("")
+})
 
+
+</script>
+@endpush
 @endsection

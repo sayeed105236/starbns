@@ -7,7 +7,7 @@
          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
       <div class="modal-header">
-        <h2 class="font-medium text-base mr-auto">Add Money</h2>
+        <h2 class="font-medium text-base mr-auto">Transfer Money</h2>
         <!-- <button class="btn btn-outline-secondary hidden sm:flex"> -->
 
           <div class="dropdown sm:hidden">

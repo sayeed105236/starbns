@@ -13,11 +13,7 @@ class BackendController extends Controller
       $users= User::all();
       return view('backend.pages.user_lists',compact('users'));
     }
-    public function PackageList()
-    {
-      $users= User::all();
-      return view('backend.pages.package_lists',compact('users'));
-    }
+    
     public function ManageDeposit()
     {
       $deposit= AddMoney::where('method','Deposit')->get();

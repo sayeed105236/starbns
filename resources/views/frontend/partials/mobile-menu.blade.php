@@ -40,24 +40,24 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="box"></i> </div>
-                <div class="side-menu__title">
+            <a href="javascript:;" class="menu">
+                <div class="menu__icon"> <i data-feather="box"></i> </div>
+                <div class="menu__title">
                   Transaction History
-                    <div class="side-menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
+                    <div class="menu__sub-icon "> <i data-feather="chevron-down"></i> </div>
                 </div>
             </a>
             <ul class="">
                 <li>
-                    <a href="/home/transactions/deposit/{{Auth::user()->id}}" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Deposit History </div>
+                    <a href="/home/transactions/deposit/{{Auth::user()->id}}" class="menu">
+                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="menu__title"> Deposit History </div>
                     </a>
                 </li>
                 <li>
-                    <a href="/home/transactions/transfer/{{Auth::user()->id}}" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Transfer History </div>
+                    <a href="/home/transactions/transfer/{{Auth::user()->id}}" class="menu">
+                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="menu__title"> Transfer History </div>
                     </a>
                 </li>
                 <!-- <li>
