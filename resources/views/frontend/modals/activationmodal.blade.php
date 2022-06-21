@@ -4,7 +4,7 @@
      <div class="modal-content">
        <form class="" action="{{route('activate-user')}}" method="post">
          @csrf
-         <input type="hidden" name="id" value="{{$row->id}}">
+         <input type="hidden" name="user_id" value="{{$row->id}}">
 
       <div class="modal-header">
         <h2 class="font-medium text-base mr-auto">Activate User </h2>
@@ -45,7 +45,7 @@
                     <div id="suggestUser"></div>
              </div> -->
              <div class="col-span-12 sm:col-span-6">
-               <label class="modal-form-6">Select Placment</label>
+               <label class="modal-form-6">Select Placement</label>
 
 
 
@@ -81,37 +81,40 @@
                  @elseif(Auth::user()->middle_side==null && Auth::user()->right_side==null)
                  <option value="2">Team B</option>
                  <option value="3">Team C</option>
-                 @elseif(Auth::user()->first_side==null && Auth::user()->right_side==null)
+                 @elseif(Auth::user()->left_side==null && Auth::user()->right_side==null)
                  <option value="1">Team A</option>
                  <option value="3">Team C</option>
-                 @elseif(Auth::user()->first_side==null && Auth::user()->middle_side==null)
+                 @elseif(Auth::user()->left_side==null && Auth::user()->middle_side==null)
                  <option value="1">Team A</option>
                  <option value="2">Team B</option>
                  @elseif(Auth::user()->right_side==null)
                   <option value="3">Team C</option>
-                  @elseif(Auth::user()->first_side==null)
+                  @elseif(Auth::user()->left_side==null)
                    <option value="1">Team A</option>
                    @elseif(Auth::user()->middle_side==null)
-                    <option value="2">Team C</option>
+                    <option value="2">Team B</option>
                   @else
                    @foreach($users as $user)
 
+
                       @if($user->left_side==null && $user->middle_side==null && $user->right_side==null)
+
                       <option value="1">Team A</option>
                       <option value="2">Team B</option>
                       <option value="3">Team C</option>
+                      @elseif($user->left_side==null && $user->middle_side==null)
+                      <option value="1">Team A</option>
+                      <option value="2">Team B</option>
                       @elseif($user->middle_side==null && $user->right_side==null)
                       <option value="2">Team B</option>
                       <option value="3">Team C</option>
-                      @elseif($user->first_side==null && $user->right_side==null)
+                      @elseif($user->left_side==null && $user->right_side==null)
                       <option value="1">Team A</option>
                       <option value="3">Team C</option>
-                      @elseif($user->first_side==null && $user->middle_side==null)
-                      <option value="1">Team A</option>
-                      <option value="2">Team B</option>
+
                       @elseif($user->right_side==null)
                         <option value="3">Team C</option>
-                        @elseif($user->first_side==null)
+                        @elseif($user->left_side==null)
                           <option value="1">Team A</option>
                           @elseif($user->middle_side==null)
                             <option value="2">Team B</option>

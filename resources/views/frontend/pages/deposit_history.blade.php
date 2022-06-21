@@ -65,7 +65,7 @@
 
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->amount}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->amount}}$</div>
                     </td>
                     <td>
 

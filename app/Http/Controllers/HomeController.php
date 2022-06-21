@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AddMoney;
 use Auth;
+use App\Models\IncomeWallet;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,7 @@ class HomeController extends Controller
       $data['deposit']=AddMoney::where('user_id',Auth::id())->first();
 
       $data['sum_deposit']=AddMoney::where('user_id',Auth::id())->where('status','approve')->sum('amount');
+      $data['bonus']=IncomeWallet::where('user_id',Auth::id())->where('status','approve')->sum('amount');
         return view('frontend.pages.index',compact('data'));
     }
     public function adminHome()

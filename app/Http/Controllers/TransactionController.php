@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AddMoney;
 use Auth;
+use App\Models\IncomeWallet;
 class TransactionController extends Controller
 {
     public function Deposit($id)
@@ -16,5 +17,15 @@ class TransactionController extends Controller
     {
       $transfer=AddMoney::where('user_id',Auth::id())->where('method','Transfer Money')->get();
       return view('frontend.pages.transfer_history',compact('transfer'));
+    }
+    public function Activation($id)
+    {
+      $activation=AddMoney::where('user_id',Auth::id())->where('method','Activation Charge')->get();
+      return view('frontend.pages.activation_history',compact('activation'));
+    }
+    public function SponsorBonus($id)
+    {
+      $sponsor_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Sponsor Bonus')->get();
+      return view('frontend.pages.sponsorbonus_history',compact('sponsor_bonus'));
     }
 }

@@ -44,6 +44,18 @@
                         <div class="side-menu__title"> Transfer History </div>
                     </a>
                 </li>
+                <li>
+                    <a href="/home/transactions/activation/{{Auth::user()->id}}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Activation History </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/transactions/sponsor-bonus/{{Auth::user()->id}}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Sponsor Bonus History </div>
+                    </a>
+                </li>
                 <!-- <li>
                     <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>

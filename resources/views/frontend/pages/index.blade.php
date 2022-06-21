@@ -77,7 +77,7 @@
                                         <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div> -->
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">$0.00</div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$data['bonus'] ? '$'.number_format((float)$data['bonus'], 2, '.', '') : '$00.00'}}</div>
                                 <div class="text-base text-slate-500 mt-1">Income Wallet</div>
 
 
