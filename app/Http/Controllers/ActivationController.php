@@ -63,7 +63,7 @@ class ActivationController extends Controller
         $sponsor_bonus->amount= $package->sponsor_bonus;
         $sponsor_bonus->method= 'Sponsor Bonus';
         $sponsor_bonus->type= 'Credit';
-        $sponsor_bonus->type= 'approve';
+        $sponsor_bonus->status= 'approve';
         $sponsor_bonus->description= $package->sponsor_bonus. '$ Bonus amount is credited for '. $user_name->user_name .' Activation';
         $sponsor_bonus->save();
 
@@ -75,6 +75,36 @@ class ActivationController extends Controller
         $user_data=User::where('id',$request->user_id)->get()->first();
         //dd($user_data->placement_id);
         $this->binary_count($user_data->placement_id,$user_data->position);
+
+
+        $income=[$package->lvl_1,$package->lvl_2,$package->lvl_3,$package->lvl_4,$package->lvl_5,$package->lvl_6,
+      $package->lvl_7,$package->lvl_8,$package->lvl_9,$package->lvl_10,$package->lvl_11,$package->lvl_12,$package->lvl_13,
+    $package->lvl_14,$package->lvl_15];
+      $users= User::all();
+      foreach ($users as $user) {
+        $placement_id= $user->placement_id;
+        //dd($placement_id);
+        $i=0;
+        while($i < 15 && $placement_id != ''){
+
+            $user = User::where('user_name',$placement_id)->first('id');
+
+            $bonus_amount = new IncomeWallet();
+            $bonus_amount->user_id = (int)$user->id;
+            $bonus_amount->amount = $income[$i];
+            $bonus_amount->method = 'Level Bonus';
+            $bonus_amount->type = 'Credit';
+            $bonus_amount->status = 'approve';
+            $bonus_amount->description= $income[$i]. '$'. ' Generation Bonus amount is credited for '. $user_name->user_name .' Activation';
+            $bonus_amount->save();
+
+            $next_id= $this->find_placement_id($placement_id);
+           // dd($next_id,$placement_id);
+            $placement_id = $next_id;
+            $i++;
+        }
+      }
+
 
         return back()->with('activation_success', 'User Successfully Activated!!');
       }

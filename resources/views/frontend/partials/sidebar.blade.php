@@ -24,6 +24,18 @@
             </a>
         </li>
         <li>
+            <a href="#" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="layers"></i> </div>
+                <div class="side-menu__title"> My Rank </div>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="share-2"></i> </div>
+                <div class="side-menu__title"> My Team </div>
+            </a>
+        </li>
+        <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="box"></i> </div>
                 <div class="side-menu__title">
@@ -56,6 +68,12 @@
                         <div class="side-menu__title"> Sponsor Bonus History </div>
                     </a>
                 </li>
+                <li>
+                    <a href="/home/transactions/level-bonus/{{Auth::user()->id}}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Level Bonus History </div>
+                    </a>
+                </li>
                 <!-- <li>
                     <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
@@ -69,6 +87,36 @@
                     </a>
                 </li> -->
             </ul>
+        </li>
+        <li>
+            <a href="#" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="key"></i> </div>
+                <div class="side-menu__title"> KYC Verification </div>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="tool"></i> </div>
+                <div class="side-menu__title"> Payment Settings </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="user-check"></i> </div>
+                <div class="side-menu__title"> My Profile </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="power"></i> </div>
+                <div class="side-menu__title"> Log Out </div>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+
         </li>
         <!-- <li>
             <a href="side-menu-light-file-manager.html" class="side-menu">

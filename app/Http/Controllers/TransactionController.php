@@ -28,4 +28,9 @@ class TransactionController extends Controller
       $sponsor_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Sponsor Bonus')->get();
       return view('frontend.pages.sponsorbonus_history',compact('sponsor_bonus'));
     }
+    public function LevelBonus($id)
+    {
+      $level_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->get();
+      return view('frontend.pages.levelbonus_history',compact('level_bonus'));
+    }
 }

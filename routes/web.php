@@ -46,6 +46,7 @@ Route::get('/home/transactions/deposit/{id}', [TransactionController::class, 'De
 Route::get('/home/transactions/transfer/{id}', [TransactionController::class, 'Transfer'])->middleware('auth');
 Route::get('/home/transactions/activation/{id}', [TransactionController::class, 'Activation'])->middleware('auth');
 Route::get('/home/transactions/sponsor-bonus/{id}', [TransactionController::class, 'SponsorBonus'])->middleware('auth');
+Route::get('/home/transactions/level-bonus/{id}', [TransactionController::class, 'LevelBonus'])->middleware('auth');
 //admin user lists
 Route::get('admin/home/user-lists', [BackendController::class, 'UserList'])->name('user-lists')->middleware('is_admin');
 //package lists
