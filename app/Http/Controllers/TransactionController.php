@@ -33,4 +33,9 @@ class TransactionController extends Controller
       $level_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->get();
       return view('frontend.pages.levelbonus_history',compact('level_bonus'));
     }
+    public function DailyBonus($id)
+    {
+      $daily_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->get();
+      return view('frontend.pages.dailybonus_history',compact('daily_bonus'));
+    }
 }

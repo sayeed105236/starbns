@@ -47,6 +47,7 @@ Route::get('/home/transactions/transfer/{id}', [TransactionController::class, 'T
 Route::get('/home/transactions/activation/{id}', [TransactionController::class, 'Activation'])->middleware('auth');
 Route::get('/home/transactions/sponsor-bonus/{id}', [TransactionController::class, 'SponsorBonus'])->middleware('auth');
 Route::get('/home/transactions/level-bonus/{id}', [TransactionController::class, 'LevelBonus'])->middleware('auth');
+Route::get('/home/transactions/daily-roi/{id}', [TransactionController::class, 'DailyBonus'])->middleware('auth');
 //admin user lists
 Route::get('admin/home/user-lists', [BackendController::class, 'UserList'])->name('user-lists')->middleware('is_admin');
 //package lists
@@ -62,3 +63,8 @@ Route::get('/admin/home/wallet-delete/{id}', [WalletController::class, 'Delete']
 Route::get('admin/home/manage-deposit', [BackendController::class, 'ManageDeposit'])->name('manage-deposit')->middleware('is_admin');
 Route::get('/admin/home/add-money-approve/{id}', [BackendController::class,'approve'])->middleware('is_admin');
 Route::get('/admin/home/add-money-reject/{id}', [BackendController::class,'rejected'])->middleware('is_admin');
+
+
+//daily roi from admin
+Route::get('admin/home/manage-daily-roi', [BackendController::class, 'DailyRoi'])->name('daily-roi')->middleware('is_admin');
+Route::post('admin/home/store-roi', [BackendController::class, 'StoreRoi'])->name('store-roi')->middleware('is_admin');

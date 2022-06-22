@@ -87,7 +87,13 @@
                 <li>
                     <a href="/home/transactions/level-bonus/{{Auth::user()->id}}" class="menu">
                         <div class="menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="menu__title"> Level Bonus History </div>
+                        <div class="menu__title"> Generation Bonus History </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/transactions/daily-roi/{{Auth::user()->id}}" class="menu">
+                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="menu__title"> Daily ROI History </div>
                     </a>
                 </li>
                 <!-- <li>

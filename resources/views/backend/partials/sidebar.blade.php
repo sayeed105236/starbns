@@ -88,6 +88,12 @@
                 <div class="side-menu__title"> Deposit Request</div>
             </a>
         </li>
+        <li>
+            <a href="{{route('daily-roi')}}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="fast-forward"></i> </div>
+                <div class="side-menu__title"> Daily ROI</div>
+            </a>
+        </li>
         <!-- <li>
             <a href="side-menu-light-file-manager.html" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>

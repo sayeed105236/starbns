@@ -1,21 +1,23 @@
-@extends('backend.layouts.master')
+@extends('frontend.layouts.master')
 
-@section('backend_content')
+@section('content')
 
 
 <div class="intro-y flex items-center mt-8">
     <h2 class="text-lg font-medium mr-auto">
-        User Lists
+        Daily ROI History
     </h2>
 </div>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
         <!-- <button class="btn btn-primary shadow-md mr-2">Add New Product</button> -->
         <div class="dropdown">
-            <!-- <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span>
-            </button> -->
-            <div class="dropdown-menu w-40">
+           <div class="text-center"> <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#packageaddmodal" class="btn btn-primary"><span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span></a> </div>
+
+
+
+            </button>
+            <!-- <div class="dropdown-menu w-40">
                 <ul class="dropdown-content">
                     <li>
                         <a href="" class="dropdown-item"> <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </a>
@@ -27,7 +29,7 @@
                         <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i> Export to PDF </a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
         <!-- <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -43,73 +45,44 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">#</th>
-                    <th class="whitespace-nowrap">Name</th>
-                    <th class="whitespace-nowrap">Email</th>
-                    <th class="whitespace-nowrap">User Name</th>
-                    <th class="whitespace-nowrap">Sponsor</th>
-                    <th class="whitespace-nowrap">Placement</th>
-                    <th class="whitespace-nowrap">Position</th>
+                    <!-- <th class="whitespace-nowrap">Received From</th> -->
+                    <th class="whitespace-nowrap">Amount</th>
+                    <th class="whitespace-nowrap">Method</th>
+                    <th class="whitespace-nowrap">Type</th>
+                    <th class="whitespace-nowrap">Description</th>
 
-                    <th class="text-center whitespace-nowrap">STATUS</th>
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+
+                    <th class="text-center whitespace-nowrap">Date</th>
                 </tr>
             </thead>
             <tbody>
-              @foreach($users as $row)
+              @foreach($daily_bonus as $row)
                 <tr class="intro-x">
                     <td class="w-40">
                         <div class="flex">
                             {{$loop->index+1}}
                         </div>
                     </td>
+
+
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->name}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->amount}}$</div>
                     </td>
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->email}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->method}}</div>
                     </td>
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->user_name}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->type}}</div>
                     </td>
-                    <td class="text-center">{{$row->sponsors->user_name}}</td>
-                      <td class="text-center">
-                        @if($row->placement_id != null)
 
-                        {{$row->placement_id}}
-                        @else
-                        No Placement Yet
-                        @endif
-                      </td>
-                      <td class="text-center">
-                        @if($row->position != null)
-                        @if($row->position== 1)
-                        TEAM A
-                        @elseif($row->position== 2)
-                        TEAM B
-                        @else
-                        TEAM C
-                        @endif
-
-
-                        @else
-                      Free User
-                        @endif
-                      </td>
                     <td class="w-40">
-                      @if($row->status == 1)
-                        <div class="flex items-center justify-center text-success"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Active </div>
-                        @else
-                            <div class="flex items-center justify-center text-danger"> <i data-feather="x-square" class="w-4 h-4 mr-2"></i> Inactive </div>
-                            @endif
+                      <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->description}}</div>
                     </td>
                     <td class="table-report__action w-56">
-                        <div class="flex justify-center items-center">
-                            <a class="flex items-center mr-3" href="javascript:;"> <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                            <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
-                        </div>
+                      {{$row->created_at}}
                     </td>
                 </tr>
                 @endforeach
