@@ -48,6 +48,7 @@ Route::get('/home/transactions/activation/{id}', [TransactionController::class, 
 Route::get('/home/transactions/sponsor-bonus/{id}', [TransactionController::class, 'SponsorBonus'])->middleware('auth');
 Route::get('/home/transactions/level-bonus/{id}', [TransactionController::class, 'LevelBonus'])->middleware('auth');
 Route::get('/home/transactions/daily-roi/{id}', [TransactionController::class, 'DailyBonus'])->middleware('auth');
+Route::get('/home/transactions/income-generation-bonus/{id}', [TransactionController::class, 'IncomeBonus'])->middleware('auth');
 //admin user lists
 Route::get('admin/home/user-lists', [BackendController::class, 'UserList'])->name('user-lists')->middleware('is_admin');
 //package lists
