@@ -68,3 +68,7 @@ Route::get('/admin/home/add-money-reject/{id}', [BackendController::class,'rejec
 //daily roi from admin
 Route::get('admin/home/manage-daily-roi', [BackendController::class, 'DailyRoi'])->name('daily-roi')->middleware('is_admin');
 Route::post('admin/home/store-roi', [BackendController::class, 'StoreRoi'])->name('store-roi')->middleware('is_admin');
+
+//income generation
+Route::get('admin/home/income-generation', [BackendController::class, 'IncomeGeneration'])->name('income-generation')->middleware('is_admin');
+Route::post('admin/home/income-generation-update', [BackendController::class, 'UpdateIncomeGeneration'])->name('update-income-generation')->middleware('is_admin');

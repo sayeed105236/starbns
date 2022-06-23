@@ -60,11 +60,11 @@ class ActivationController extends Controller
         $sponsor_bonus= new IncomeWallet();
         $sponsor_bonus->user_id= $sponsor_id->sponsor;
         $sponsor_bonus->received_from= $request->user_id;
-        $sponsor_bonus->amount= $package->sponsor_bonus;
+        $sponsor_bonus->amount= ($package->package_price)*($package->sponsor_bonus/100);
         $sponsor_bonus->method= 'Sponsor Bonus';
         $sponsor_bonus->type= 'Credit';
         $sponsor_bonus->status= 'approve';
-        $sponsor_bonus->description= $package->sponsor_bonus. '$ Bonus amount is credited for '. $user_name->user_name .' Activation';
+        $sponsor_bonus->description= ($package->package_price)*($package->sponsor_bonus/100). '$ Bonus amount is credited for '. $user_name->user_name .' Activation';
         $sponsor_bonus->save();
 
         $purchase_package= new Purchase();

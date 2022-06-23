@@ -11,6 +11,7 @@ use App\Models\IncomeWallet;
 use App\Models\Package;
 use Carbon\Carbon;
 use DateTime;
+use App\Models\IncomeGeneration;
 
 class BackendController extends Controller
 {
@@ -46,6 +47,11 @@ class BackendController extends Controller
       $daily_bonus= IncomeWallet::where('method','Daily Bonus')->where('status','approve')->get();
       return view('backend.pages.daily_roi',compact('daily_bonus'));
     }
+    public function IncomeGeneration()
+    {
+      $i_generation= IncomeGeneration::first();
+      return view('backend.pages.income_generation',compact('i_generation'));
+    }
     public function StoreRoi(Request $request)
     {
       $roi= new Roi();
@@ -80,5 +86,16 @@ class BackendController extends Controller
   }
     return back()->with('money_added', 'Daily ROI Successfully Added!!');
 }
+    public function UpdateIncomeGeneration(Request $request)
+    {
+      $i_generation= IncomeGeneration::find($request->id);
+      $i_generation->lvl_1=$request->lvl_1;
+      $i_generation->lvl_2=$request->lvl_2;
+      $i_generation->lvl_3=$request->lvl_3;
+      $i_generation->lvl_4=$request->lvl_4;
+      $i_generation->lvl_5=$request->lvl_5;
+      $i_generation->save();
+      return back()->with('gen_updated', 'Settings Successfully Updated!!');
+    }
 
 }

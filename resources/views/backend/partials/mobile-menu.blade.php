@@ -88,6 +88,12 @@
                 <div class="side-menu__title"> Daily ROI</div>
             </a>
         </li>
+        <li>
+            <a href="{{route('income-generation')}}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
+                <div class="side-menu__title"> Income Generation Bonus</div>
+            </a>
+        </li>
         <!-- <li>
             <a href="side-menu-light-file-manager.html" class="menu">
                 <div class="menu__icon"> <i data-feather="hard-drive"></i> </div>
