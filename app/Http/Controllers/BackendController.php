@@ -11,7 +11,7 @@ use App\Models\IncomeWallet;
 use App\Models\Package;
 use Carbon\Carbon;
 use DateTime;
-use App\Models\IncomeGeneration;
+use App\Models\Generation;
 
 class BackendController extends Controller
 {
@@ -49,7 +49,7 @@ class BackendController extends Controller
     }
     public function IncomeGeneration()
     {
-      $i_generation= IncomeGeneration::first();
+      $i_generation= Generation::first();
       return view('backend.pages.income_generation',compact('i_generation'));
     }
     public function StoreRoi(Request $request)
@@ -88,7 +88,7 @@ class BackendController extends Controller
 }
     public function UpdateIncomeGeneration(Request $request)
     {
-      $i_generation= IncomeGeneration::find($request->id);
+      $i_generation= Generation::find($request->id);
       $i_generation->lvl_1=$request->lvl_1;
       $i_generation->lvl_2=$request->lvl_2;
       $i_generation->lvl_3=$request->lvl_3;
