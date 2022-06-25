@@ -57,15 +57,19 @@ class IncomeGeneration extends Command
       while($i < 5 && $placement_id != ''){
 
           $user = User::where('user_name',$placement_id)->first('id');
+          $activation_status=User::where('id',$user->id)->first();
+          if ($activation_status->status== 1) {
+            $bonus_amount = new IncomeWallet();
+            $bonus_amount->user_id = (int)$user->id;
+            $bonus_amount->amount = $calculation*($income[$i]/100);
+            $bonus_amount->method = 'Income Generation Bonus';
+            $bonus_amount->type = 'Credit';
+            $bonus_amount->status = 'approve';
+            $bonus_amount->level = $i+1;
+            $bonus_amount->description= $calculation/$income[$i]. '$'. ' Income Generation Bonus amount is credited ';
+            $bonus_amount->save();
+          }
 
-          $bonus_amount = new IncomeWallet();
-          $bonus_amount->user_id = (int)$user->id;
-          $bonus_amount->amount = $calculation/$income[$i];
-          $bonus_amount->method = 'Income Generation Bonus';
-          $bonus_amount->type = 'Credit';
-          $bonus_amount->status = 'approve';
-          $bonus_amount->description= $calculation/$income[$i]. '$'. ' Income Generation Bonus amount is credited ';
-          $bonus_amount->save();
 
           $next_id= $this->find_placement_id($placement_id);
          // dd($next_id,$placement_id);

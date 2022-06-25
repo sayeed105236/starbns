@@ -57,15 +57,19 @@ class ActivationController extends Controller
         $bal_ded->status= 'approve';
         $bal_ded->save();
         $sponsor_id= User::where('id',$request->user_id)->first();
-        $sponsor_bonus= new IncomeWallet();
-        $sponsor_bonus->user_id= $sponsor_id->sponsor;
-        $sponsor_bonus->received_from= $request->user_id;
-        $sponsor_bonus->amount= ($package->package_price)*($package->sponsor_bonus/100);
-        $sponsor_bonus->method= 'Sponsor Bonus';
-        $sponsor_bonus->type= 'Credit';
-        $sponsor_bonus->status= 'approve';
-        $sponsor_bonus->description= ($package->package_price)*($package->sponsor_bonus/100). '$ Bonus amount is credited for '. $user_name->user_name .' Activation';
-        $sponsor_bonus->save();
+        $activation_status= User::where('id',$request->user_id)->first();
+        if ($activation_status->status == 1) {
+          $sponsor_bonus= new IncomeWallet();
+          $sponsor_bonus->user_id= $sponsor_id->sponsor;
+          $sponsor_bonus->received_from= $request->user_id;
+          $sponsor_bonus->amount= ($package->package_price)*($package->sponsor_bonus/100);
+          $sponsor_bonus->method= 'Sponsor Bonus';
+          $sponsor_bonus->type= 'Credit';
+          $sponsor_bonus->status= 'approve';
+          $sponsor_bonus->description= ($package->package_price)*($package->sponsor_bonus/100). '$ Bonus amount is credited for '. $user_name->user_name .' Activation';
+          $sponsor_bonus->save();
+        }
+
 
         $purchase_package= new Purchase();
         $purchase_package->user_id= $request->user_id;
@@ -80,7 +84,7 @@ class ActivationController extends Controller
         $income=[$package->lvl_1,$package->lvl_2,$package->lvl_3,$package->lvl_4,$package->lvl_5,$package->lvl_6,
       $package->lvl_7,$package->lvl_8,$package->lvl_9,$package->lvl_10,$package->lvl_11,$package->lvl_12,$package->lvl_13,
     $package->lvl_14,$package->lvl_15];
-      $users= User::all();
+      $users= User::where('status',1)->get();
       foreach ($users as $user) {
         $placement_id= $user->placement_id;
         //dd($placement_id);
@@ -88,15 +92,21 @@ class ActivationController extends Controller
         while($i < 15 && $placement_id != ''){
 
             $user = User::where('user_name',$placement_id)->first('id');
+            $ac_status=User::where('id',$user->id)->first();
+            if ($ac_status->status== 1) {
+              $bonus_amount = new IncomeWallet();
+              $bonus_amount->user_id = (int)$user->id;
+              $bonus_amount->amount = ($income[$i])/4;
+              $bonus_amount->method = 'Level Bonus';
+              $bonus_amount->type = 'Credit';
+              $bonus_amount->status = 'approve';
+              $bonus_amount->level = $i+1;
+              $bonus_amount->description= $income[$i]. '$'. ' Generation Bonus amount is credited for '. $user_name->user_name .' Activation';
+              $bonus_amount->save();
 
-            $bonus_amount = new IncomeWallet();
-            $bonus_amount->user_id = (int)$user->id;
-            $bonus_amount->amount = $income[$i];
-            $bonus_amount->method = 'Level Bonus';
-            $bonus_amount->type = 'Credit';
-            $bonus_amount->status = 'approve';
-            $bonus_amount->description= $income[$i]. '$'. ' Generation Bonus amount is credited for '. $user_name->user_name .' Activation';
-            $bonus_amount->save();
+            }
+
+
 
             $next_id= $this->find_placement_id($placement_id);
            // dd($next_id,$placement_id);

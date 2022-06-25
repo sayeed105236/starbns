@@ -69,16 +69,19 @@ class BackendController extends Controller
 
 
               if ($days <= 365){
+                  $activation_status= User::where('id',$row->id)->first();
+                  if ($activation_status->status== 1) {
+                    /$bonus= new IncomeWallet();
+                    $bonus->user_id= $row->user_id;
 
-                  $bonus= new IncomeWallet();
-                  $bonus->user_id= $row->user_id;
+                    $bonus->amount= ($package->package_price)*($roi->percentage);
+                    $bonus->method= 'Daily Bonus';
+                    $bonus->type= 'Credit';
+                    $bonus->status= 'approve';
+                    $bonus->description=($package->package_price)*($roi->percentage). '$ ' . 'Daily Bonus for purchasing Package';
+                    $bonus->save();
+                  }
 
-                  $bonus->amount= ($package->package_price)*($roi->percentage);
-                  $bonus->method= 'Daily Bonus';
-                  $bonus->type= 'Credit';
-                  $bonus->status= 'approve';
-                  $bonus->description=($package->package_price)*($roi->percentage). '$ ' . 'Daily Bonus for purchasing Package';
-                  $bonus->save();
 
 
                     }
