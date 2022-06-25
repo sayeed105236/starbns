@@ -57,7 +57,7 @@ class ActivationController extends Controller
         $bal_ded->status= 'approve';
         $bal_ded->save();
         $sponsor_id= User::where('id',$request->user_id)->first();
-        $activation_status= User::where('id',$request->user_id)->first();
+        $activation_status= User::where('id',$sponsor_id->sponsor)->first();
         if ($activation_status->status == 1) {
           $sponsor_bonus= new IncomeWallet();
           $sponsor_bonus->user_id= $sponsor_id->sponsor;
