@@ -17,7 +17,7 @@ class ActivationController extends Controller
     public function activate(Request $request)
 
     {
-      dd($request);
+      //dd($request);
       DB::beginTransaction();
     try {
       $data['deposit']=AddMoney::where('user_id',Auth::id())->first();
