@@ -69,7 +69,8 @@ class BackendController extends Controller
 
 
               if ($days <= 365){
-                  $activation_status= User::where('id',$row->id)->first();
+                  $activation_status= User::where('id',$row->user_id)->first();
+                //  dd($activation_status);
                   if ($activation_status->status== 1) {
                     $bonus= new IncomeWallet();
                     $bonus->user_id= $row->user_id;

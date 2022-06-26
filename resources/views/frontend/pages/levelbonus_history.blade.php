@@ -12,7 +12,7 @@
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
         <!-- <button class="btn btn-primary shadow-md mr-2">Add New Product</button> -->
         <div class="dropdown">
-           <div class="text-center"> <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#packageaddmodal" class="btn btn-primary"><span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-feather="plus"></i> </span></a> </div>
+           <div class="text-center"> </div>
 
 
 
@@ -63,7 +63,7 @@
                             {{$loop->index+1}}
                         </div>
                     </td>
-                  
+
 
                     <td>
 
