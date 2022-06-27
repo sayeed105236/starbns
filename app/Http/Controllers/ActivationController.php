@@ -28,6 +28,16 @@ class ActivationController extends Controller
       if ($data['sum_deposit'] < $package->package_price ) {
           return back()->with('activation_failed', 'Insufficent Fund!!');
       }else {
+
+        $user_name= User::where('id',$request->user_id)->select('user_name')->first();
+        $place= User::where('id',$request->placement_id)->select('user_name')->first();
+
+
+        $activate= User::find($request->user_id);
+        $activate->placement_id= $place->user_name;
+        $activate->position=$request->position;
+        $activate->status= 1;
+        $activate->save();
         $check_position= User::where('id',$request->placement_id)->first();
         //dd($check_position->left_side);
 
@@ -59,15 +69,6 @@ class ActivationController extends Controller
 
         }
         $placement->save();
-        $user_name= User::where('id',$request->user_id)->select('user_name')->first();
-        $place= User::where('id',$request->placement_id)->select('user_name')->first();
-
-
-        $activate= User::find($request->user_id);
-        $activate->placement_id= $place->user_name;
-        $activate->position=$request->position;
-        $activate->status= 1;
-        $activate->save();
 
         $bal_ded= new AddMoney();
         $bal_ded->user_id= Auth::id();
