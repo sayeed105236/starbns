@@ -131,7 +131,7 @@ class ActivationController extends Controller
                   $bonus_amount->received_from = $received->id;
                   $bonus_amount->status = 'approve';
                   $bonus_amount->level = $i+1;
-                  $bonus_amount->description= ($income[$i]) . '$'. ' Generation Bonus amount is credited for '. $user_name->user_name .' Activation';
+                  $bonus_amount->description= ($income[$i]) . '$'. ' Level '. $i+1 . ' Generation Bonus amount is credited for '. $user_name->user_name .' Activation';
 
 
                   $bonus_amount->save();
