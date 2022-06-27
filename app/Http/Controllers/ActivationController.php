@@ -28,7 +28,37 @@ class ActivationController extends Controller
       if ($data['sum_deposit'] < $package->package_price ) {
           return back()->with('activation_failed', 'Insufficent Fund!!');
       }else {
+        $check_position= User::where('id',$request->placement_id)->first();
+        //dd($check_position->left_side);
 
+        $placement= User::find($request->placement_id);
+
+        if ($request->position==1) {
+          if ($placement->left_side != null) {
+            return back()->with('activation_failed', 'Position is not empty. Select another position!!');
+          }else {
+            $placement->left_side=$user_name->user_name;
+          }
+
+
+        }elseif ($request->position==2) {
+          if ($placement->middle_side != null) {
+            return back()->with('activation_failed', 'Position is not empty. Select another position!!');
+          }else {
+            $placement->middle_side=$user_name->user_name;
+          }
+
+
+        }else {
+          if ($placement->right_side != null) {
+              return back()->with('activation_failed', 'Position is not empty. Select another position!!');
+          }else {
+            $placement->right_side=$user_name->user_name;
+          }
+
+
+        }
+        $placement->save();
         $user_name= User::where('id',$request->user_id)->select('user_name')->first();
         $place= User::where('id',$request->placement_id)->select('user_name')->first();
 
@@ -38,19 +68,7 @@ class ActivationController extends Controller
         $activate->position=$request->position;
         $activate->status= 1;
         $activate->save();
-        $placement= User::find($request->placement_id);
-        //dd($placement->left_count);
-        if ($request->position==1) {
-          $placement->left_side=$user_name->user_name;
 
-        }elseif ($request->position==2) {
-            $placement->middle_side=$user_name->user_name;
-
-        }else {
-            $placement->right_side=$user_name->user_name;
-
-        }
-        $placement->save();
         $bal_ded= new AddMoney();
         $bal_ded->user_id= Auth::id();
         $bal_ded->amount= -($package->package_price);
