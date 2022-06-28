@@ -46,7 +46,9 @@
                 <tr>
                     <th class="whitespace-nowrap">#</th>
                     <!-- <th class="whitespace-nowrap">Received From</th> -->
+
                     <th class="whitespace-nowrap">Amount</th>
+                    <th class="whitespace-nowrap">Received From</th>
                     <th class="whitespace-nowrap">Method</th>
                     <th class="whitespace-nowrap">Type</th>
                     <th class="whitespace-nowrap">Description</th>
@@ -57,6 +59,7 @@
             </thead>
             <tbody>
               @foreach($level_bonus as $row)
+
                 <tr class="intro-x">
                     <td class="w-40">
                         <div class="flex">
@@ -67,22 +70,30 @@
 
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->amount}}$</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                          <?php
+                          $amount= App\Models\IncomeWallet::where('user_id',Auth::id())->where('received_from',$row->received_from)->where('method','Level Bonus')->orderBy('id','desc')->first();
+                           ?>
+                          {{$amount->amount}}$</div>
                     </td>
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->method}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->sender->user_name}}</div>
                     </td>
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->type}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$amount->method}}</div>
+                    </td>
+                    <td>
+
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$amount->type}}</div>
                     </td>
 
                     <td class="w-40">
-                      <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->description}}</div>
+                      <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$amount->description}}</div>
                     </td>
                     <td class="table-report__action w-56">
-                      {{$row->created_at}}
+                      {{$amount->created_at}}
                     </td>
                 </tr>
                 @endforeach

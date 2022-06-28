@@ -119,7 +119,7 @@ class ActivationController extends Controller
 
             $received= User::where('user_name',$user_name->user_name)->select('id')->first();
             $check= IncomeWallet::where('user_id',$user->id)->where('received_from',$received->id)->where('level',$i+1)->orderBy('id','desc')->first();
-          //dd($check,$user->id,$placement_id,$received->id);
+            //dd($check,$user->id,$placement_id,$received->id);
 
               if ($ac_status->status == 1 && $check == null ) {
 
@@ -132,14 +132,14 @@ class ActivationController extends Controller
                   $bonus_amount->status = 'approve';
                   $bonus_amount->level = $i+1;
                   $bonus_amount->description= ($income[$i]) . '$'. ' Level '. $i+1 . ' Generation Bonus amount is credited for '. $user_name->user_name .' Activation';
-
-
+                  
+                  //dd($income);
                   $bonus_amount->save();
-
-
+                  $bonus_amount->id;
+                //  dd($bonus_amount->id);
 
               }
-            //dd($bonus_amount->level);
+
 
 
             $next_id= $this->find_placement_id($placement_id);

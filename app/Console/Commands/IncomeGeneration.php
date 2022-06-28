@@ -67,7 +67,10 @@ class IncomeGeneration extends Command
             $bonus_amount->status = 'approve';
             $bonus_amount->level = $i+1;
             $bonus_amount->description= ($calculation*($income[$i]/100)) . '$'. ' Income Generation Bonus amount is credited ';
-            $bonus_amount->save();
+            if ($bonus_amount->amount > 0) {
+              $bonus_amount->save();
+            }
+
           }
 
 
