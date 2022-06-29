@@ -55,7 +55,7 @@
 
                               <div class="modal-footer">
                                  <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Cancel</button>
-                                  <button type="submit" class="btn btn-primary w-20">Save</button>
+                                  <button type="submit" class="btn btn-primary w-20">Deposit</button>
                                 </div> <!-- END: Modal Footer -->
                               </form>
                               </div>

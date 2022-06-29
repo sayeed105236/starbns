@@ -32,6 +32,7 @@
     </div>
             @endif
                 <div class="grid grid-cols-12 gap-6 mt-5">
+                  
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
@@ -110,10 +111,10 @@
                                     </div> -->
                                 </div>
                                 <?php
-                                $transfer=App\Models\AddMoney::where('user_id',Auth::id())->where('method','Transfer Money')->sum('amount');
+                                $transfer=App\Models\AddMoney::where('user_id',Auth::id())->where('method','Transfer Money')->where('type','Debit')->sum('amount');
 
                                  ?>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$transfer ? '$'.number_format((float)$transfer, 2, '.', '') : '$00.00'}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{abs($transfer) ? '$'.number_format((float)abs($transfer), 2, '.', '') : '$00.00'}}</div>
                                 <div class="text-base text-slate-500 mt-1">Total Transfer</div>
 
 
