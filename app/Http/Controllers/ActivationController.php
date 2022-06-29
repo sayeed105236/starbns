@@ -132,7 +132,7 @@ class ActivationController extends Controller
                   $bonus_amount->status = 'approve';
                   $bonus_amount->level = $i+1;
                   $bonus_amount->description= ($income[$i]) . '$'. ' Level '. $i+1 . ' Generation Bonus amount is credited for '. $user_name->user_name .' Activation';
-                  
+
                   //dd($income);
                   $bonus_amount->save();
                   $bonus_amount->id;
@@ -151,6 +151,36 @@ class ActivationController extends Controller
       }
 
          DB::commit();
+         $level= IncomeWallet::where('method','Level Bonus')->get();
+         foreach ($level as $row) {
+           $duplicates = DB::table('income_wallets')-> where('method','Level Bonus')->where('user_id',$row->user_id)// replace table by the table name where you want to search for duplicated values
+                   ->select('id', 'received_from') // name is the column name with duplicated values
+                   ->whereIn('received_from', function ($q){
+                     $q->select('received_from')
+                     ->from('income_wallets')
+                     ->groupBy('received_from')
+                     ->havingRaw('COUNT(*) > 1');
+                   })
+                   ->orderBy('received_from')
+                   ->orderBy('id','desc') // keep smaller id (older), to keep biggest id (younger) replace with this ->orderBy('id', 'desc')
+                   ->get();
+
+     $value = "";
+
+     // loop throuht results and keep first duplicated value
+     foreach ($duplicates as $duplicate) {
+       if($duplicate->received_from === $value)
+       {
+         DB::table('income_wallets')->where('id', $duplicate->id)->delete(); // comment out this line the first time to check what will be deleted and keeped
+         echo "$duplicate->received_from with id $duplicate->id deleted! \n";
+       }
+       else
+         echo "$duplicate->received_from with id $duplicate->id keeped \n";
+       $value = $duplicate->received_from;
+     }
+           }
+         
+
         return back()->with('activation_success', 'User Successfully Activated!!');
       }
     } catch (\Exception $e) {
