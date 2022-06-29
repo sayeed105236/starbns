@@ -84,6 +84,118 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                  <i class="fa-solid fa-download fa-2x report-box__icon text-pending" ></i>
+                                    <!-- <div class="ml-auto">
+                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div> -->
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">0.00$</div>
+                                <div class="text-base text-slate-500 mt-1">Total Withdraw</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="send" class="report-box__icon text-pending"></i>
+                                    <!-- <div class="ml-auto">
+                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div> -->
+                                </div>
+                                <?php
+                                $transfer=App\Models\AddMoney::where('user_id',Auth::id())->where('method','Transfer Money')->sum('amount');
+
+                                 ?>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$transfer ? '$'.number_format((float)$transfer, 2, '.', '') : '$00.00'}}</div>
+                                <div class="text-base text-slate-500 mt-1">Total Transfer</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="users" class="report-box__icon text-pending"></i>
+                                    <?php
+                                    $sponsors= App\Models\User::where('sponsor',Auth::id())->count();
+                                     ?>
+                                    <!-- <div class="ml-auto">
+                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div> -->
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$sponsors ? number_format((int)$sponsors ) : '0'}}</div>
+                                <div class="text-base text-slate-500 mt-1">Total Sponsor</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                  <?php
+                                  $active_sponsors= App\Models\User::where('sponsor',Auth::id())->where('status',1)->count();
+                                   ?>
+                                    <i data-feather="user-check" class="report-box__icon text-pending"></i>
+                                    <!-- <div class="ml-auto">
+                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div> -->
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$active_sponsors ? number_format((int)$active_sponsors ) : '0'}}</div>
+                                <div class="text-base text-slate-500 mt-1">Active Sponsors</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                  <i class="fa-solid fa-ranking-star fa-2x report-box__icon text-pending"></i>
+                                    <!-- <div class="ml-auto">
+                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div> -->
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">No Rank</div>
+                                <div class="text-base text-slate-500 mt-1">Rank Status</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                              <?php
+
+                                $bonus_today=App\Models\IncomeWallet::where('user_id',Auth::id())->whereDate('created_at',Carbon\Carbon::today())->sum('amount');
+
+                               ?>
+                                <div class="flex">
+                                    <i data-feather="credit-card" class="report-box__icon text-pending"></i>
+                                    <!-- <div class="ml-auto">
+                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div> -->
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$bonus_today ? '$'.number_format((float)$bonus_today, 2, '.', '') : '$00.00'}}</div>
+                                <div class="text-base text-slate-500 mt-1">Today Bonus</div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
