@@ -30,8 +30,8 @@ class TransactionController extends Controller
     }
     public function LevelBonus($id)
     {
-      $level=IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->get();
-      $level_bonus= IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->distinct()->get(['received_from']);
+      $level_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->get();
+      //$level_bonus= IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->distinct()->get(['received_from']);
     //  dd($income);
       // $level=IncomeWallet::where('user_id',Auth::id())->where('method','Level Bonus')->groupBy('received_from')->get();
       // dd($level);

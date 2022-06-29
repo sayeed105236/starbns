@@ -71,10 +71,8 @@
                     <td>
 
                         <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                          <?php
-                          $amount= App\Models\IncomeWallet::where('user_id',Auth::id())->where('received_from',$row->received_from)->where('method','Level Bonus')->orderBy('id','desc')->first();
-                           ?>
-                          {{$amount->amount}}$</div>
+
+                          {{$row->amount}}$</div>
                     </td>
                     <td>
 
@@ -82,18 +80,18 @@
                     </td>
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$amount->method}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->method}}</div>
                     </td>
                     <td>
 
-                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$amount->type}}</div>
+                        <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->type}}</div>
                     </td>
 
                     <td class="w-40">
-                      <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$amount->description}}</div>
+                      <div class="text-slate-500 text-xs whitespace-nowrap mt-0.5">{{$row->description}}</div>
                     </td>
                     <td class="table-report__action w-56">
-                      {{$amount->created_at}}
+                      {{$row->created_at}}
                     </td>
                 </tr>
                 @endforeach

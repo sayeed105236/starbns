@@ -30,6 +30,8 @@ class HomeController extends Controller
 
       $data['sum_deposit']=AddMoney::where('user_id',Auth::id())->where('status','approve')->sum('amount');
       $data['bonus']=IncomeWallet::where('user_id',Auth::id())->where('status','approve')->sum('amount');
+
+
         return view('frontend.pages.index',compact('data'));
     }
     public function adminHome()
