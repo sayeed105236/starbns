@@ -32,7 +32,7 @@
     </div>
             @endif
                 <div class="grid grid-cols-12 gap-6 mt-5">
-                  
+
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
@@ -46,7 +46,7 @@
                                         <div class="report-box__indicator bg-success tooltip cursor-pointer" title="33% Higher than last month"> 33% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div> -->
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$data['sum_deposit'] ? '$'.number_format((float)$data['sum_deposit'], 2, '.', '') : '$00.00'}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$data['sum_deposit'] ? number_format((float)$data['sum_deposit'], 2, '.', '') : '00.00'}}</div>
                                 <div class="text-base text-slate-500 mt-1">Deposit Wallet</div>
 
 
@@ -54,21 +54,7 @@
 
                         </div>
                     </div>
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="flex">
-                                    <i data-feather="credit-card" class="report-box__icon text-pending"></i>
-                                    <!-- <div class="ml-auto">
-                                        <div class="report-box__indicator bg-danger tooltip cursor-pointer" title="2% Lower than last month"> 2% <i data-feather="chevron-down" class="w-4 h-4 ml-0.5"></i> </div>
-                                    </div> -->
-                                </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">$0.00</div>
-                                <div class="text-base text-slate-500 mt-1">Register Wallet</div>
 
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
@@ -78,7 +64,7 @@
                                         <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div> -->
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$data['bonus'] ? '$'.number_format((float)$data['bonus'], 2, '.', '') : '$00.00'}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{$data['bonus'] ? number_format((float)$data['bonus'], 2, '.', '') : '00.00'}}</div>
                                 <div class="text-base text-slate-500 mt-1">Income Wallet</div>
 
 
@@ -94,7 +80,7 @@
                                         <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div> -->
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">0.00$</div>
+                                <div class="text-3xl font-medium leading-8 mt-6">0.00</div>
                                 <div class="text-base text-slate-500 mt-1">Total Withdraw</div>
 
 
@@ -114,7 +100,7 @@
                                 $transfer=App\Models\AddMoney::where('user_id',Auth::id())->where('method','Transfer Money')->where('type','Debit')->sum('amount');
 
                                  ?>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{abs($transfer) ? '$'.number_format((float)abs($transfer), 2, '.', '') : '$00.00'}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{abs($transfer) ? number_format((float)abs($transfer), 2, '.', '') : '00.00'}}</div>
                                 <div class="text-base text-slate-500 mt-1">Total Transfer</div>
 
 
@@ -140,25 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="flex">
-                                  <?php
-                                  $active_sponsors= App\Models\User::where('sponsor',Auth::id())->where('status',1)->count();
-                                   ?>
-                                    <i data-feather="user-check" class="report-box__icon text-pending"></i>
-                                    <!-- <div class="ml-auto">
-                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
-                                    </div> -->
-                                </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$active_sponsors ? number_format((int)$active_sponsors ) : '0'}}</div>
-                                <div class="text-base text-slate-500 mt-1">Active Sponsors</div>
 
-
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
@@ -175,27 +143,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                              <?php
 
-                                $bonus_today=App\Models\IncomeWallet::where('user_id',Auth::id())->whereDate('created_at',Carbon\Carbon::today())->sum('amount');
-
-                               ?>
-                                <div class="flex">
-                                    <i data-feather="credit-card" class="report-box__icon text-pending"></i>
-                                    <!-- <div class="ml-auto">
-                                        <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
-                                    </div> -->
-                                </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$bonus_today ? '$'.number_format((float)$bonus_today, 2, '.', '') : '$00.00'}}</div>
-                                <div class="text-base text-slate-500 mt-1">Today Bonus</div>
-
-
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                         <div class="report-box zoom-in">

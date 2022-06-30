@@ -49,6 +49,12 @@ Route::get('/home/transactions/sponsor-bonus/{id}', [TransactionController::clas
 Route::get('/home/transactions/level-bonus/{id}', [TransactionController::class, 'LevelBonus'])->middleware('auth');
 Route::get('/home/transactions/daily-roi/{id}', [TransactionController::class, 'DailyBonus'])->middleware('auth');
 Route::get('/home/transactions/income-generation-bonus/{id}', [TransactionController::class, 'IncomeBonus'])->middleware('auth');
+
+
+
+//user reset password
+Route::get('/home/reset-password/{id}', [FrontendController::class, 'ResetPassword'])->middleware('auth');
+Route::post('/home/reset-password/store', [FrontendController::class, 'ResetPasswordStore'])->name('change-password-store')->middleware('auth');
 //admin user lists
 Route::get('admin/home/user-lists', [BackendController::class, 'UserList'])->name('user-lists')->middleware('is_admin');
 //package lists

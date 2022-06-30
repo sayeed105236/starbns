@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 
+
+use Illuminate\Support\Facades\Hash;
+
 class FrontendController extends Controller
 {
     public function index($id)
@@ -25,5 +28,41 @@ class FrontendController extends Controller
             return response()->json(['success'=>'<span style="color: red;">User not found!!</span>'],200);
         }
 
+    }
+    public function ResetPassword($id)
+    {
+      return view('frontend.pages.user-password');
+    }
+    public function ResetPasswordStore(Request $request)
+    {
+      $request->validate([
+          'old_password' => 'required',
+          'new_password' => 'required|min:5',
+          'password_confirmation' => 'required|min:5',
+      ]);
+      $db_pass = Auth::user()->password;
+      $current_password = $request->old_password;
+      $newpass = $request->new_password;
+      $confirmpass = $request->password_confirmation;
+
+     if (Hash::check($current_password,$db_pass)) {
+      if ($newpass === $confirmpass) {
+          User::findOrFail(Auth::id())->update([
+            'password' => Hash::make($newpass)
+          ]);
+
+          Auth::logout();
+
+        return Redirect()->route('login')->with('password_updated','Your Password Change Successfully. Please Login With your New Password');;
+
+      }else {
+
+
+        return Redirect()->back()->with('password_error','New Password And Confirm Password Not Same');
+      }
+   }else {
+
+    return Redirect()->back()->with('password_not_match','Old Password Not Match');
+   }
     }
 }

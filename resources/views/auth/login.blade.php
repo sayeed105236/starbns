@@ -20,10 +20,12 @@ License: You must have a valid license purchased only from themeforest(the above
         <title>StarBns</title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{asset('dist/css/app.css')}}" />
+
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
     <body class="login">
+      
         <div class="container sm:px-10">
             <div class="block xl:grid grid-cols-2 gap-4">
                 <!-- BEGIN: Login Info -->
@@ -60,6 +62,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </span>
                             @enderror
                             <input type="password" class="intro-x login__input form-control py-3 px-4 block mt-4 @error('password') is-invalid @enderror" placeholder="password" name="password" required autocomplete="current-password">
+                            <span class="input-group-text" onclick="password_show_hide();">
+                            <i class="fas fa-eye" id="show_eye"></i>
+                            <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                          </span>
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
