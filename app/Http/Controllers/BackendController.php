@@ -18,6 +18,7 @@ class BackendController extends Controller
     public function UserList()
     {
       $users= User::all();
+
       return view('backend.pages.user_lists',compact('users'));
     }
 

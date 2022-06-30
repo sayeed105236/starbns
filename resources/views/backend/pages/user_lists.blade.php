@@ -115,6 +115,7 @@
                 @endforeach
 
             </tbody>
+
         </table>
     </div>
     <!-- END: Data List -->
@@ -172,5 +173,17 @@
         </div>
     </div>
 </div>
+<div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
+    <nav class="w-full sm:w-auto sm:mr-auto">
+        <ul class="pagination">
+          <div class="container">
+            
+          </div>
+
+        </ul>
+    </nav>
+
+</div>
+
 
 @endsection

@@ -45,7 +45,7 @@ class TransactionController extends Controller
     }
     public function IncomeBonus($id)
     {
-      $income_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Income Generation Bonus')->get();
+      $income_bonus=IncomeWallet::where('user_id',Auth::id())->where('method','Income Generation Bonus')->where('amount','!=','0')->get();
       return view('frontend.pages.incomebonus_history',compact('income_bonus'));
     }
 }

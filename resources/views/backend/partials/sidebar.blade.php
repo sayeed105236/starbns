@@ -7,7 +7,7 @@
     <div class="side-nav__devider my-6"></div>
     <ul>
         <li>
-            <a href="{{route('admin.home')}}" class="side-menu side-menu--active">
+            <a href="{{route('admin.home')}}" class="{{ request()->routeIs('admin.home') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="home"></i> </div>
                 <div class="side-menu__title">
                     Dashboard
@@ -65,37 +65,37 @@
             </ul>
         </li> -->
         <li>
-            <a href="{{route('user-lists')}}" class="side-menu">
+            <a href="{{route('user-lists')}}" class="{{ request()->routeIs('user-lists') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                 <div class="side-menu__title"> User Lists</div>
             </a>
         </li>
         <li>
-            <a href="{{route('package-lists')}}" class="side-menu">
+            <a href="{{route('package-lists')}}" class="{{ request()->routeIs('package-lists') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="aperture"></i> </div>
                 <div class="side-menu__title"> Package Settings</div>
             </a>
         </li>
         <li>
-            <a href="{{route('manage-wallet')}}" class="side-menu">
+            <a href="{{route('manage-wallet')}}" class="{{ request()->routeIs('manage-wallet') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="credit-card"></i> </div>
                 <div class="side-menu__title"> Wallet Settings</div>
             </a>
         </li>
         <li>
-            <a href="{{route('manage-deposit')}}" class="side-menu">
+            <a href="{{route('manage-deposit')}}" class="{{ request()->routeIs('manage-deposit') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="navigation"></i> </div>
                 <div class="side-menu__title"> Deposit Request</div>
             </a>
         </li>
         <li>
-            <a href="{{route('daily-roi')}}" class="side-menu">
+            <a href="{{route('daily-roi')}}" class="{{ request()->routeIs('daily-roi') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="fast-forward"></i> </div>
                 <div class="side-menu__title"> Daily ROI</div>
             </a>
         </li>
         <li>
-            <a href="{{route('income-generation')}}" class="side-menu">
+            <a href="{{route('income-generation')}}" class="{{ request()->routeIs('income-generation') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="dollar-sign"></i> </div>
                 <div class="side-menu__title"> Income Generation Bonus</div>
             </a>

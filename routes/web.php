@@ -36,7 +36,7 @@ Route::post('/home/add-money/transfermoney', [AddMoneyController::class, 'transf
 //activate USER
 Route::post('/home/users/activate', [ActivationController::class, 'activate'])->name('activate-user')->middleware('auth');
 //user sponsors list
-Route::get('/home/my-sponsors/{id}', [FrontendController::class, 'index'])->middleware('auth');
+Route::get('/home/my-sponsors/{id}', [FrontendController::class, 'index'])->name('my-sponsors')->middleware('auth');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::post('/home/get-sponsor', [RegisterController::class,'getSponsor'])->name('get-sponsor');
 Route::post('/home/get-user', [FrontendController::class,'getUser'])->name('get-user');

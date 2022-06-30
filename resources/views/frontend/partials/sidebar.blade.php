@@ -7,7 +7,7 @@
     <div class="side-nav__devider my-6"></div>
     <ul>
         <li>
-            <a href="{{route('home')}}" class="side-menu side-menu--active">
+            <a href="{{route('home')}}" class="{{ request()->routeIs('home') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="home"></i> </div>
                 <div class="side-menu__title">
                     Dashboard
@@ -18,7 +18,13 @@
         </li>
 
         <li>
-            <a href="/home/my-sponsors/{{Auth::user()->id}}" class="side-menu">
+          <?php
+
+          $user_id= Auth::user()->id;
+          //dd($user_id);
+           ?>
+            <a href="/home/my-sponsors/{{Auth::user()->id}}" class="{{ request()->is('/home/my-sponsors/*' ) ? 'side-menu side-menu--active' : 'side-menu' }}">
+
                 <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                 <div class="side-menu__title"> My Sponsors </div>
             </a>
