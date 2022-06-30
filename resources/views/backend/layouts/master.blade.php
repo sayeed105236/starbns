@@ -8,7 +8,7 @@ Purchase: https://themeforest.net/user/left4code/portfolio
 Renew Support: https://themeforest.net/user/left4code/portfolio
 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
 -->
-<html lang="en" class="light">
+<html lang="en" class="dark">
     <!-- BEGIN: Head -->
     @include('backend.partials.header')
     <!-- END: Head -->

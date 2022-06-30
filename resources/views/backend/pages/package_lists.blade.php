@@ -135,7 +135,7 @@
                    <div class="col-span-12 sm:col-span-6">
                      <label for="modal-form-6" class="form-label">Status</label>
                      <select name="status" id="modal-form-6" class="form-select">
-                       <option selected>
+                       <option selected value="{{$package->status}}">
                          @if($package->status == 1)
                          Active
                          @else

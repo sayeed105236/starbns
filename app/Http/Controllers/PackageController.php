@@ -35,7 +35,12 @@ class PackageController extends Controller
     $package->lvl_13=$request->lvl_13;
     $package->lvl_14=$request->lvl_14;
     $package->lvl_15=$request->lvl_15;
+    if ($request->status == null) {
+      $package->status= 1;
+    }else {
     $package->status= $request->status;
+    }
+
     $package->save();
       return back()->with('package_updated','Package Updated Successfully');
 

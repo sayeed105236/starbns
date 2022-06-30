@@ -4,12 +4,12 @@
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Search -->
     <div class="intro-x relative mr-3 sm:mr-6">
-        <div class="search hidden sm:block">
+        <!-- <div class="search hidden sm:block">
             <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
             <i data-feather="search" class="search__icon dark:text-slate-500"></i>
-        </div>
-        <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon dark:text-slate-500"></i> </a>
-        <div class="search-result">
+        </div> -->
+        <!-- <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon dark:text-slate-500"></i> </a> -->
+        <!-- <div class="search-result">
             <div class="search-result__content">
                 <div class="search-result__content__title">Pages</div>
                 <div class="mb-5">
@@ -87,11 +87,11 @@
                     <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">PC &amp; Laptop</div>
                 </a>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- END: Search -->
     <!-- BEGIN: Notifications -->
-    <div class="intro-x dropdown mr-auto sm:mr-6">
+    <!-- <div class="intro-x dropdown mr-auto sm:mr-6">
         <div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button" aria-expanded="false" data-tw-toggle="dropdown"> <i data-feather="bell" class="notification__icon dark:text-slate-500"></i> </div>
         <div class="notification-content pt-2 dropdown-menu">
             <div class="notification-content__box dropdown-content">
@@ -163,12 +163,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- END: Notifications -->
     <!-- BEGIN: Account Menu -->
     <div class="intro-x dropdown w-8 h-8">
         <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button" aria-expanded="false" data-tw-toggle="dropdown">
+            @if(Auth::user()->image != null)
+            <img alt="Rubick Tailwind HTML Admin Template" src="{{asset('storage/users/'. Auth::user()->image)}}">
+            @else
             <img alt="Rubick Tailwind HTML Admin Template" src="{{asset('dist/images/profile-8.jpg')}}">
+            @endif
         </div>
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
@@ -180,17 +184,17 @@
                     <hr class="dropdown-divider border-white/[0.08]">
                 </li>
                 <li>
-                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
+                    <a href="/home/user-profile/{{Auth::user()->id}}" class="dropdown-item hover:bg-white/5"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
-                </li>
+                </li> -->
                 <li>
-                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
+                    <a href="/home/reset-password/{{Auth::user()->id}}" class="dropdown-item hover:bg-white/5"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
-                </li>
+                </li> -->
                 <li>
                     <hr class="dropdown-divider border-white/[0.08]">
                 </li>
