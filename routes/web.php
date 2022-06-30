@@ -55,6 +55,10 @@ Route::get('/home/transactions/income-generation-bonus/{id}', [TransactionContro
 //user reset password
 Route::get('/home/reset-password/{id}', [FrontendController::class, 'ResetPassword'])->middleware('auth');
 Route::post('/home/reset-password/store', [FrontendController::class, 'ResetPasswordStore'])->name('change-password-store')->middleware('auth');
+
+//user profile
+Route::get('/home/user-profile/{id}', [FrontendController::class, 'UserProfile'])->middleware('auth');
+Route::post('/home/user-profile/update', [FrontendController::class, 'UpdateProfile'])->name('update-profile')->middleware('auth');
 //admin user lists
 Route::get('admin/home/user-lists', [BackendController::class, 'UserList'])->name('user-lists')->middleware('is_admin');
 //package lists

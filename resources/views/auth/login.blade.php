@@ -25,7 +25,8 @@ License: You must have a valid license purchased only from themeforest(the above
     </head>
     <!-- END: Head -->
     <body class="login">
-      
+
+
         <div class="container sm:px-10">
             <div class="block xl:grid grid-cols-2 gap-4">
                 <!-- BEGIN: Login Info -->
@@ -40,6 +41,12 @@ License: You must have a valid license purchased only from themeforest(the above
                             A few more clicks to
                             <br>
                             sign in to your account.
+                            @if(Session::has('password_updated'))
+                        <div class="alert alert-success show mb-2" role="alert">Success</div>
+                        <div>
+                            {{Session::get('password_updated')}}
+                        </div>
+                        @endif
                         </div>
                         <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">Login to start the Adventure</div>
                     </div>

@@ -114,7 +114,7 @@
         </li>
 
         <li>
-            <a href="#" class="side-menu">
+            <a href="/home/user-profile/{{Auth::user()->id}}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="user-check"></i> </div>
                 <div class="side-menu__title"> My Profile </div>
             </a>

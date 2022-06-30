@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 use Illuminate\Support\Facades\Hash;
@@ -64,5 +65,55 @@ class FrontendController extends Controller
 
     return Redirect()->back()->with('password_not_match','Old Password Not Match');
    }
+    }
+    public function UserProfile($id)
+    {
+      return view('frontend.pages.user-profile');
+    }
+    public function UpdateProfile(Request $request)
+    {
+      $user= User::find($request->id);
+      $user->name=$request->name;
+      $user->address= $request->address;
+      $user->number=$request->number;
+      $user->postal_code=$request->postal_code;
+      $user->country=$request->country;
+      $user->gender= $request->gender;
+      if ($request->file('file1') != null) {
+        $filename=null;
+        $uploadedFile = $request->file('file1');
+        $oldfilename = $deals['image'] ?? 'demo.jpg';
+
+        $oldfileexists = Storage::disk('public')->exists('users/' . $oldfilename);
+
+        if ($uploadedFile !== null) {
+
+            if ($oldfileexists && $oldfilename != $uploadedFile) {
+                //Delete old file
+                Storage::disk('public')->delete('users/' . $oldfilename);
+            }
+            $filename_modified = str_replace(' ', '_', $uploadedFile->getClientOriginalName());
+            $filename = time() . '_' . $filename_modified;
+
+            Storage::disk('public')->putFileAs(
+                'users/',
+                $uploadedFile,
+                $filename
+            );
+
+            $data['image'] = $filename;
+        } elseif (empty($oldfileexists)) {
+            throw new GeneralException('Image not found!');
+            //return redirect()->back()->with(['flash_danger' => 'User image not found!']);
+            //file check in storage
+
+        }
+      }
+        if ($request->file('file1') != null)
+        {
+            $user->image= $filename;
+        }
+        $user->save();
+          return Redirect()->back()->with('profile_updated','Profile Updated Successfully!!!');
     }
 }

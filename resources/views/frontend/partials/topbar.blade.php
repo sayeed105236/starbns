@@ -168,7 +168,11 @@
     <!-- BEGIN: Account Menu -->
     <div class="intro-x dropdown w-8 h-8">
         <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button" aria-expanded="false" data-tw-toggle="dropdown">
+            @if(Auth::user()->image != null)
+            <img alt="Rubick Tailwind HTML Admin Template" src="{{asset('storage/users/'. Auth::user()->image)}}">
+            @else
             <img alt="Rubick Tailwind HTML Admin Template" src="{{asset('dist/images/profile-8.jpg')}}">
+            @endif
         </div>
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
@@ -180,7 +184,7 @@
                     <hr class="dropdown-divider border-white/[0.08]">
                 </li>
                 <li>
-                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
+                    <a href="/home/user-profile/{{Auth::user()->id}}" class="dropdown-item hover:bg-white/5"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
                 </li>
                 <!-- <li>
                     <a href="" class="dropdown-item hover:bg-white/5"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>

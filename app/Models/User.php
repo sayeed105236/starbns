@@ -27,7 +27,13 @@ class User extends Authenticatable
         'left_side',
         'middle_side',
         'right_side',
-        'status'
+        'status'.
+        'country',
+        'gender',
+        'number',
+        'postal_code',
+        'address',
+        'image'
     ];
 
     /**

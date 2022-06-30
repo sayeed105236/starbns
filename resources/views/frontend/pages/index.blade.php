@@ -31,6 +31,17 @@
         {{Session::get('transfer_error')}}
     </div>
             @endif
+            <h1>User Status:
+              @if(Auth::user()->status == 1)
+              <div class="text-success">
+                Active
+              </div>
+              @else
+              <div class="text-danger">
+                Inactive
+              </div>
+              @endif
+            </h1>
                 <div class="grid grid-cols-12 gap-6 mt-5">
 
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">

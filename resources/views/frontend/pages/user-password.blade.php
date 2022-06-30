@@ -8,6 +8,22 @@
         Reset Password
     </h2>
 </div>
+@if(Session::has('password_updated'))
+<div class="alert alert-success show mb-2" role="alert">Success</div>
+<div>
+{{Session::get('password_updated')}}
+</div>
+@elseif(Session::has('password_error'))
+<div class="alert alert-danger show mb-2" role="alert">Failed</div>
+<div>
+{{Session::get('password_error')}}
+</div>
+@elseif(Session::has('password_not_match'))
+<div class="alert alert-danger show mb-2" role="alert">Failed</div>
+<div>
+{{Session::get('password_not_match')}}
+</div>
+@endif
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
         <!-- <button class="btn btn-primary shadow-md mr-2">Add New Product</button> -->
@@ -40,6 +56,7 @@
         </div> -->
     </div>
     <!-- BEGIN: Data List -->
+
 
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
         <form class="edit-profile" form action="{{ route('change-password-store') }}" method="POST">
