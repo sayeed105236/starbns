@@ -21,6 +21,38 @@ class BackendController extends Controller
 
       return view('backend.pages.user_lists',compact('users'));
     }
+    public function GlobalList()
+    {
+      $users= User::where('global_member','1')->get();
+
+      return view('backend.pages.global_lists',compact('users'));
+    }
+    public function StoreMembershipBonus(Request $request)
+    {
+      $bonus = $request->amount;
+      $users=User::where('global_member','1')->where('status','1')->get();
+      $user_count=User::where('global_member','1')->count();
+      $bonus_amount=($request->amount)/$user_count;
+      //$method=$request->method;
+      //$txn_id=$request->txn_id;
+      foreach ($users as $key => $user) {
+        $membership_bonus = new IncomeWallet();
+
+        $membership_bonus-> user_id = $user->id;
+        $membership_bonus-> amount =$bonus_amount;
+        $membership_bonus-> type ='Credit';
+        //$membership_bonus-> amount =$amount;
+        //$membership_bonus->method=$method;
+        $membership_bonus->method='Global Membership Bonus';
+        $membership_bonus->status ='approve';
+        $membership_bonus->description = $bonus_amount . '$'.  ' Global Memebership Bonus amount is credited for Premium Membership ';
+        //$membership_bonus->txn_id=$txn_id;
+        $membership_bonus->save();
+      }
+
+      return back()->with('bonus_added','Global Membership Bonus Has been successfully credited among the Users!!');
+    
+    }
 
     public function ManageDeposit()
     {

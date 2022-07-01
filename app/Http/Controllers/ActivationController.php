@@ -38,6 +38,14 @@ class ActivationController extends Controller
         $activate->position=$request->position;
         $activate->status= 1;
         $activate->save();
+        $sponsor_count= User::where('sponsor',Auth::id())->count();
+
+        if ( $sponsor_count > 19 ) {
+          $membership= User::find(Auth::id());
+          $membership->global_member= 1;
+          $membership->save();
+
+        }
         $check_position= User::where('id',$request->placement_id)->first();
         //dd($check_position->left_side);
 
@@ -179,7 +187,7 @@ class ActivationController extends Controller
        $value = $duplicate->received_from;
      }
            }
-         
+
 
         return back()->with('activation_success', 'User Successfully Activated!!');
       }

@@ -102,6 +102,12 @@
                         <div class="menu__title"> Income Generation History  </div>
                     </a>
                 </li>
+                <li>
+                    <a href="/home/transactions/global-membership-bonus/{{Auth::user()->id}}" class="menu">
+                        <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="menu__title"> Membership Bonus History  </div>
+                    </a>
+                </li>
                 <!-- <li>
                     <a href="simple-menu-light-dashboard-overview-1.html" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>

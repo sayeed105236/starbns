@@ -71,6 +71,12 @@
             </a>
         </li>
         <li>
+            <a href="{{route('global-lists')}}" class="{{ request()->routeIs('global-lists') ? 'side-menu side-menu--active' : 'side-menu'}}">
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                <div class="side-menu__title"> Global Member Lists</div>
+            </a>
+        </li>
+        <li>
             <a href="{{route('package-lists')}}" class="{{ request()->routeIs('package-lists') ? 'side-menu side-menu--active' : 'side-menu'}}">
                 <div class="side-menu__icon"> <i data-feather="aperture"></i> </div>
                 <div class="side-menu__title"> Package Settings</div>

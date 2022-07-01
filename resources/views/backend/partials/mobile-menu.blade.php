@@ -65,6 +65,12 @@
             </a>
         </li>
         <li>
+            <a href="{{route('global-lists')}}" class="menu">
+                <div class="menu__icon"> <i data-feather="users"></i> </div>
+                <div class="menu__title"> Global Member Lists</div>
+            </a>
+        </li>
+        <li>
             <a href="{{route('package-lists')}}" class="menu">
                 <div class="menu__icon"> <i data-feather="aperture"></i> </div>
                 <div class="menu__title"> Package Settings</div>

@@ -49,6 +49,7 @@ Route::get('/home/transactions/sponsor-bonus/{id}', [TransactionController::clas
 Route::get('/home/transactions/level-bonus/{id}', [TransactionController::class, 'LevelBonus'])->middleware('auth');
 Route::get('/home/transactions/daily-roi/{id}', [TransactionController::class, 'DailyBonus'])->middleware('auth');
 Route::get('/home/transactions/income-generation-bonus/{id}', [TransactionController::class, 'IncomeBonus'])->middleware('auth');
+Route::get('/home/transactions/global-membership-bonus/{id}', [TransactionController::class, 'MembershipBonus'])->middleware('auth');
 
 
 
@@ -61,6 +62,8 @@ Route::get('/home/user-profile/{id}', [FrontendController::class, 'UserProfile']
 Route::post('/home/user-profile/update', [FrontendController::class, 'UpdateProfile'])->name('update-profile')->middleware('auth');
 //admin user lists
 Route::get('admin/home/user-lists', [BackendController::class, 'UserList'])->name('user-lists')->middleware('is_admin');
+Route::get('admin/home/global-member-lists', [BackendController::class, 'GlobalList'])->name('global-lists')->middleware('is_admin');
+Route::post('admin/home/give-membership-bonus', [BackendController::class, 'StoreMembershipBonus'])->name('store-memebership-bonus')->middleware('is_admin');
 //package lists
 Route::get('admin/home/package-lists', [PackageController::class, 'PackageList'])->name('package-lists')->middleware('is_admin');
 //admin package update
