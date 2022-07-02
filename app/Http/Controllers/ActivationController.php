@@ -239,7 +239,7 @@ class ActivationController extends Controller
           $pos= 'right_count';
         }
 
-        return $pos;
+      //  return $pos;
 
     }
 

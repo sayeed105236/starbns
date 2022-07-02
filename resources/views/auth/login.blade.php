@@ -68,11 +68,20 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                            <input type="password" class="intro-x login__input form-control py-3 px-4 block mt-4 @error('password') is-invalid @enderror" placeholder="password" name="password" required autocomplete="current-password">
-                            <span class="input-group-text" onclick="password_show_hide();">
-                            <i class="fas fa-eye" id="show_eye"></i>
-                            <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-                          </span>
+                            <!-- <input type="password" class="intro-x login__input form-control py-3 px-4 block mt-4 @error('password') is-invalid @enderror" placeholder="password" name="password" data-toggle="password" required autocomplete="current-password">
+                            <div class="input-group-append">
+                                  <span>
+                                    <i class="fa fa-eye"></i>
+                                  </span>
+                                </div> -->
+                                <div class="input-group mt-4">
+                                <input type="password" name="password" id="password" class="intro-x login__input form-control py-3 px-4 block @error('password') is-invalid @enderror" data-toggle="password" required autocomplete="current-password">
+                                <div class="input-group-append">
+                                  <span>
+                                    <i class="fa fa-eye"></i>
+                                  </span>
+                                </div>
+                              </div>
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -107,7 +116,37 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END: Dark Mode Switcher-->
 
         <!-- BEGIN: JS Assets-->
-        <script src="{{asset('dist/js/app.js')}}"></script>
+        <script>
+        !function ($) {
+    //eyeOpenClass: 'fa-eye',
+    //eyeCloseClass: 'fa-eye-slash',
+        'use strict';
+
+        $(function () {
+            $('[data-toggle="password"]').each(function () {
+                var input = $(this);
+                eye_btn.css('cursor', 'pointer').addClass('input-password-hide');
+                eye_btn.on('click', function () {
+                    if (eye_btn.hasClass('input-password-hide')) {
+                        eye_btn.removeClass('input-password-hide').addClass('input-password-show');
+                        eye_btn.find('.fa').removeClass('fa-eye').addClass('fa-eye-slash')
+                        input.attr('type', 'text');
+                    } else {
+                        eye_btn.removeClass('input-password-show').addClass('input-password-hide');
+                        eye_btn.find('.fa').removeClass('fa-eye-slash').addClass('fa-eye')
+                        input.attr('type', 'password');
+                    }
+                });
+            });
+        });
+
+    }(window.jQuery);
+
+    !function(a){a(function(){a('[data-toggle="password"]').each(function(){var b = a(this); var c = a(this).parent().find(".input-group-text"); c.css("cursor", "pointer").addClass("input-password-hide"); c.on("click", function(){if (c.hasClass("input-password-hide")){c.removeClass("input-password-hide").addClass("input-password-show"); c.find(".fa").removeClass("fa-eye").addClass("fa-eye-slash"); b.attr("type", "text")} else{c.removeClass("input-password-show").addClass("input-password-hide"); c.find(".fa").removeClass("fa-eye-slash").addClass("fa-eye"); b.attr("type", "password")}})})})}(window.jQuery);
+
+        </script>
         <!-- END: JS Assets-->
+        <script src="{{asset('dist/js/app.js')}}"></script>
+
     </body>
 </html>
