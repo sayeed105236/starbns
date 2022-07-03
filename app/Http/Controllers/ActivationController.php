@@ -114,7 +114,7 @@ class ActivationController extends Controller
         $income=[$package->lvl_1,$package->lvl_2,$package->lvl_3,$package->lvl_4,$package->lvl_5,$package->lvl_6,
       $package->lvl_7,$package->lvl_8,$package->lvl_9,$package->lvl_10,$package->lvl_11,$package->lvl_12,$package->lvl_13,
     $package->lvl_14,$package->lvl_15];
-      $users= User::where('status',1)->where('placement_id','!=','null')->get();
+      $users= User::where('status',1)->where('position',$placement->position)->get();
       foreach ($users as $user) {
         $placement_id= $user['placement_id'];
         //dd($placement_id);
