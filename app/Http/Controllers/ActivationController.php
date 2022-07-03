@@ -116,7 +116,7 @@ class ActivationController extends Controller
     $package->lvl_14,$package->lvl_15];
       $users= User::where('status',1)->get();
       foreach ($users as $user) {
-        $placement_id= $user->placement_id;
+        $placement_id= $user['placement_id'];
         //dd($placement_id);
         $i=0;
         while($i < 15 && $placement_id != ''){
@@ -151,7 +151,7 @@ class ActivationController extends Controller
 
 
             $next_id= $this->find_placement_id($placement_id);
-           // dd($next_id,$placement_id);
+          // dd($next_id,$placement_id);
             $placement_id = $next_id;
 
             $i++;
@@ -246,6 +246,7 @@ class ActivationController extends Controller
     public function find_placement_id($placement_id){
 
         $user_id = User::where('user_name',$placement_id)->first();
+      //  dd($user_id);
         return $user_id->placement_id;
     }
     public function getPlacement(Request $request)

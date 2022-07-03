@@ -46,7 +46,7 @@
 
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
-                            <div class="box p-5">
+                            <div class="box p-5 bg-warning">
                                 <div class="flex">
 
                                       <a href="#" data-tw-toggle="modal" data-tw-target="#addmoneymodal"><i data-feather="plus-square" class="report-box__icon text-pending"></i></a>
@@ -58,7 +58,7 @@
                                     </div> -->
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$data['sum_deposit'] ? number_format((float)$data['sum_deposit'], 2, '.', '') : '00.00'}}</div>
-                                <div class="text-base text-slate-500 mt-1">Deposit Wallet</div>
+                                <div class="text-base text-slate-500 mt-1" style="color:black">Deposit Wallet</div>
 
 
                             </div>
@@ -66,9 +66,9 @@
                         </div>
                     </div>
 
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y box bg-primary" >
                         <div class="report-box zoom-in">
-                            <div class="box p-5">
+                            <div class="box p-5 box bg-success">
                                 <div class="flex">
                                     <i data-feather="credit-card" class="report-box__icon text-pending"></i>
                                     <!-- <div class="ml-auto">
@@ -76,7 +76,7 @@
                                     </div> -->
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$data['bonus'] ? number_format((float)$data['bonus'], 2, '.', '') : '00.00'}}</div>
-                                <div class="text-base text-slate-500 mt-1">Income Wallet</div>
+                                <div class="text-base text-slate-500 mt-1" style="color:white">Income Wallet</div>
 
 
                             </div>
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
-                            <div class="box p-5">
+                            <div class="box p-5 box bg-danger">
                                 <div class="flex">
                                   <i class="fa-solid fa-download fa-2x report-box__icon text-pending" ></i>
                                     <!-- <div class="ml-auto">
@@ -92,7 +92,7 @@
                                     </div> -->
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">0.00</div>
-                                <div class="text-base text-slate-500 mt-1">Total Withdraw</div>
+                                <div class="text-base text-slate-500 mt-1" style="color:white">Total Withdraw</div>
 
 
                             </div>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
-                            <div class="box p-5">
+                            <div class="box p-5 box bg-primary">
                                 <div class="flex">
                                     <i data-feather="send" class="report-box__icon text-pending"></i>
                                     <!-- <div class="ml-auto">
@@ -112,7 +112,7 @@
 
                                  ?>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{abs($transfer) ? number_format((float)abs($transfer), 2, '.', '') : '00.00'}}</div>
-                                <div class="text-base text-slate-500 mt-1">Total Transfer</div>
+                                <div class="text-base text-slate-500 mt-1" style="color:white">Total Transfer</div>
 
 
                             </div>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
-                            <div class="box p-5">
+                            <div class="box p-5 box bg-warning">
                                 <div class="flex">
                                     <i data-feather="users" class="report-box__icon text-pending"></i>
                                     <?php
@@ -131,7 +131,7 @@
                                     </div> -->
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$sponsors ? number_format((int)$sponsors ) : '0'}}</div>
-                                <div class="text-base text-slate-500 mt-1">Total Sponsor</div>
+                                <div class="text-base text-slate-500 mt-1" style="color:black">Total Sponsor</div>
 
 
                             </div>
@@ -140,7 +140,7 @@
 
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <div class="report-box zoom-in">
-                            <div class="box p-5">
+                            <div class="box p-5 box bg-success">
                                 <div class="flex">
                                   <i class="fa-solid fa-ranking-star fa-2x report-box__icon text-pending"></i>
                                     <!-- <div class="ml-auto">
@@ -148,7 +148,7 @@
                                     </div> -->
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">No Rank</div>
-                                <div class="text-base text-slate-500 mt-1">Rank Status</div>
+                                <div class="text-base text-slate-500 mt-1" style="color:white">Rank Status</div>
 
 
                             </div>
