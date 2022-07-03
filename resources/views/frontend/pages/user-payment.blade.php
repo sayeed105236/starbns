@@ -98,14 +98,15 @@
                   <div class="p-5">
                     <form class="" action="{{route('update-payment')}}" method="post" enctype="multipart/form-data">
                       @csrf
-
+                      <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                       <div class="flex flex-col-reverse xl:flex-row flex-col">
                         @if($payment != null)
 
                           <input type="hidden" name="id" value="{{$payment->id}}">
-                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+
 
                           @endif
+
                           <div class="flex-1 mt-6 xl:mt-0">
                               <div class="grid grid-cols-12 gap-x-5">
                                   <div class="col-span-12 2xl:col-span-6">

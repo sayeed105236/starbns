@@ -54,7 +54,7 @@ class RegisterController extends Controller
          return Validator::make($data, [
              'name' => ['required', 'string', 'max:255'],
              'email' => ['required', 'string', 'email', 'max:255'],
-             'user_name' => ['required', 'string', 'string', 'max:255', 'unique:users'],
+             'user_name' => ['required', 'string',  'max:255', 'unique:users'],
              'password' => ['required', 'string', 'min:8', 'confirmed'],
          ]);
      }
@@ -68,20 +68,28 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
       
-
         $sponsor =  User::where('user_name','like', $data['sponsor'])->select('id','user_name')->first();
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'user_name' => $data['user_name'],
-            'is_admin' => 0,
-            'status'=>0,
-            'sponsor'=> $sponsor->id,
-            // 'left_side'=>$data['left_side'],
-            // 'right_side'=>$data['right_side'],
-            // 'middle_side'=>$data['middle_side'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if ($sponsor == null) {
+            return response()->json(['success'=>'<span style="color: red;">User not found!!</span>'],200);
+        }else {
+          return User::create([
+              'name' => $data['name'],
+              'email' => $data['email'],
+              'user_name' => $data['user_name'],
+              'is_admin' => 0,
+              'status'=>0,
+              'sponsor'=> $sponsor->id,
+              // 'left_side'=>$data['left_side'],
+              // 'right_side'=>$data['right_side'],
+              // 'middle_side'=>$data['middle_side'],
+              'password' => Hash::make($data['password']),
+          ]);
+        }
+
+
+
+
+
     }
     public function getSponsor(Request $request)
     {
