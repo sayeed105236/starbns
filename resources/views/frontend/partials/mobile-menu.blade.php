@@ -129,13 +129,13 @@
             </a>
         </li>
         <li>
-            <a href="#" class="menu">
+            <a href="/home/user-payment-settings/{{Auth::user()->id}}" class="menu">
                 <div class="menu__icon"> <i data-feather="tool"></i> </div>
                 <div class="menu__title"> Payment Settings </div>
             </a>
         </li>
         <li>
-            <a href="#" class="menu">
+            <a href="/home/user-profile/{{Auth::user()->id}}" class="menu">
                 <div class="menu__icon"> <i data-feather="user-check"></i> </div>
                 <div class="menu__title"> My Profile </div>
             </a>

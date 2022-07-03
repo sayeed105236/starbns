@@ -119,7 +119,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="side-menu">
+            <a href="/home/user-payment-settings/{{Auth::user()->id}}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="tool"></i> </div>
                 <div class="side-menu__title"> Payment Settings </div>
             </a>

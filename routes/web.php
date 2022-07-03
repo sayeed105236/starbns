@@ -10,6 +10,7 @@ use App\Http\Controllers\AddMoneyController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ActivationController;
+use App\Http\Controllers\UserPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,9 @@ Route::get('/home/transactions/daily-roi/{id}', [TransactionController::class, '
 Route::get('/home/transactions/income-generation-bonus/{id}', [TransactionController::class, 'IncomeBonus'])->middleware('auth');
 Route::get('/home/transactions/global-membership-bonus/{id}', [TransactionController::class, 'MembershipBonus'])->middleware('auth');
 
+//user payment Settings
+Route::get('/home/user-payment-settings/{id}', [UserPaymentController::class, 'index'])->middleware('auth');
+Route::post('/home/user-payment-settings/update', [UserPaymentController::class, 'update'])->name('update-payment')->middleware('auth');
 
 
 //user reset password

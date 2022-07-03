@@ -11,7 +11,7 @@
 @if(Session::has('profile_updated'))
 <div class="alert alert-success show mb-2" role="alert">Success</div>
 <div>
-{{Session::get('password_updated')}}
+{{Session::get('profile_updated')}}
 </div>
 @elseif(Session::has('password_error'))
 <div class="alert alert-danger show mb-2" role="alert">Failed</div>
