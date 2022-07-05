@@ -54,16 +54,12 @@
                   @if(Auth::user()->left_side==null || Auth::user()->middle_side==null || Auth::user()->right_side==null)
                     <option  value="{{Auth::user()->id}}">{{Auth::user()->user_name}}</option>
                     @else
-                    <?php
 
-                      $place= App\Models\User::where('placement',Auth::id())->get();
-
-                     ?>
 
                @foreach($place as $p)
 
 
-                   <option  value="">{{$p->user_name}}</option>
+                   <option  value="{{$p->id}}">{{$p->user_name}}</option>
 
                @endforeach
                @endif
