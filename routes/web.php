@@ -60,7 +60,7 @@ Route::post('/home/user-payment-settings/update', [UserPaymentController::class,
 //user reset password
 Route::get('/home/reset-password/{id}', [FrontendController::class, 'ResetPassword'])->middleware('auth');
 Route::post('/home/reset-password/store', [FrontendController::class, 'ResetPasswordStore'])->name('change-password-store')->middleware('auth');
-
+Route::post('/home/check-position', [ActivationController::class,'checkPosition'])->name('referrals-checkposition');
 //user profile
 Route::get('/home/user-profile/{id}', [FrontendController::class, 'UserProfile'])->middleware('auth');
 Route::post('/home/user-profile/update', [FrontendController::class, 'UpdateProfile'])->name('update-profile')->middleware('auth');

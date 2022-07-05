@@ -17,7 +17,7 @@ class ActivationController extends Controller
     public function activate(Request $request)
 
     {
-      //dd($request);
+
       DB::beginTransaction();
     try {
       $data['deposit']=AddMoney::where('user_id',Auth::id())->first();
@@ -36,6 +36,7 @@ class ActivationController extends Controller
         $activate= User::find($request->user_id);
         $activate->placement_id= $place->user_name;
         $activate->position=$request->position;
+        $activate->placement=$request->user_id;
         $activate->status= 1;
         $activate->save();
         $sponsor_count= User::where('sponsor',Auth::id())->count();
@@ -114,7 +115,7 @@ class ActivationController extends Controller
         $income=[$package->lvl_1,$package->lvl_2,$package->lvl_3,$package->lvl_4,$package->lvl_5,$package->lvl_6,
       $package->lvl_7,$package->lvl_8,$package->lvl_9,$package->lvl_10,$package->lvl_11,$package->lvl_12,$package->lvl_13,
     $package->lvl_14,$package->lvl_15];
-      $users= User::where('status',1)->where('position',$placement->position)->get();
+      $users= User::where('status',1)->get();
       foreach ($users as $user) {
         $placement_id= $user['placement_id'];
         //dd($placement_id);
@@ -258,6 +259,54 @@ class ActivationController extends Controller
             return response()->json(['success'=>'<span style="color: green;">User found!!</span>','data'=>$userName],200);
         }else{
             return response()->json(['success'=>'<span style="color: red;">User not found!!</span>'],200);
+        }
+
+    }
+    public function checkPosition(Request $request){
+        dd($request);
+        $userName = User::where('user_name','like',$request['id'])->pluck('user_name')->first();
+
+        $check_position = User::where('placement_id',$userName)->where('position',$request['position'])->orderBy('id','desc')->first();
+
+        if(is_null($check_position)){
+            $first = User::where('user_name',$userName)->orderBy('id','desc')->first();
+            return  $first->user_name;
+        }else{
+            $all = $check_position->childrenRecursive;
+        }
+
+
+        // loop through category ids and find all child categories until there are no more
+
+
+        if(count($all)>0)
+        {
+            foreach($all as $subcat){
+                if(count($subcat->childrenRecursive) > 0){
+                    //dd($subcat->childrenRecursive());
+                    foreach ($subcat->childrenRecursive as $item){
+                        return $this->check($item);
+                    }
+                }else{
+                    return $subcat->user_name;
+                }
+            }
+            //dd($all);
+        }
+        else
+        {
+            return $check_position->user_name;
+        }
+
+    }
+    public function check($subcat){
+        if(count($subcat->childrenRecursive) > 0){
+            foreach ($subcat->childrenRecursive as $item){
+                return  $this->check($item);
+                //return $item->user_name;
+            }
+        }else{
+            return $subcat->user_name;
         }
 
     }

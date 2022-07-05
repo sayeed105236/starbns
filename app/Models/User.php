@@ -33,7 +33,8 @@ class User extends Authenticatable
         'number',
         'postal_code',
         'address',
-        'image'
+        'image',
+        'placement'
     ];
 
     /**

@@ -165,6 +165,44 @@
 </div>
 @push('scripts')
 <script>
+$(document).ready(function () {
+    //select2Me('');
+});
+$("#successMessage").delay(10000).slideUp(300);
+$('#sponsor').on('change', function (e) {
+    $('#placement_id').val('');
+    $("#position").select2("val", "");
+});
+
+$('#position').on('change', function (e) {
+    var position = $(this).val();
+    if (position == '') {
+        return false;
+    }
+    var sponsor = $('#sponsor').val();
+
+    //var position=  $('#position').val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        //url: $(this).attr('action'),
+        url: '{{route("referrals-checkposition")}}',
+        type: 'POST',
+        data: {sponsor: sponsor, position: position},
+        //dataType: 'json',
+        success: function (data) {
+            $('#placement_id').val(data);
+            //location.reload();
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
+
+});
 $("body").on("keyup", "#sponsor", function () {
 //alert('success');
     let searchData = $("#sponsor").val();

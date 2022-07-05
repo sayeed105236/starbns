@@ -54,13 +54,17 @@
                   @if(Auth::user()->left_side==null || Auth::user()->middle_side==null || Auth::user()->right_side==null)
                     <option  value="{{Auth::user()->id}}">{{Auth::user()->user_name}}</option>
                     @else
-               @foreach($users as $user)
+                    <?php
 
-                 @if($user->left_side==null || $user->middle_side==null || $user->right_side==null)
+                      $place= App\Models\User::where('placement',Auth::id())->get();
+
+                     ?>
+
+               @foreach($place as $p)
 
 
-                   <option  value="{{$user->id}}">{{$user->user_name}}</option>
-                @endif
+                   <option  value="">{{$p->user_name}}</option>
+
                @endforeach
                @endif
 
@@ -94,6 +98,7 @@
                    @elseif(Auth::user()->middle_side==null)
                     <option value="2">Team B</option>
                   @else
+
                    @foreach($users as $user)
 
 
