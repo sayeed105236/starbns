@@ -5,6 +5,7 @@
        <form class="" action="{{route('activate-user')}}" method="post">
          @csrf
          <input type="hidden" name="user_id" value="{{$row->id}}">
+         <input type="hidden" id="sponsor" name="sponsor" value="{{$row->user_name}}">
 
       <div class="modal-header">
         <h2 class="font-medium text-base mr-auto">Activate User </h2>
@@ -27,7 +28,7 @@
              ?>
 
               <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                 <div class="col-span-12 sm:col-span-6">
+                 <div class="col-span-12 sm:col-span-12">
                    <label class="modal-form-6">Select Package</label>
 
 
@@ -39,37 +40,42 @@
                   </select>
                 </div>
               </div>
+              <div class="col-span-12 sm:col-span-12">
+                <label class="modal-form-6">Select Team</label>
+
+
+                  <div class="form-control"> <select name="position" id="position"  data-placeholder="Select Position" class="tom-select w-full">
+
+
+
+
+
+                      <option value="1">Team A</option>
+                      <option value="2">Team B</option>
+                      <option value="3">Team C</option>
+
+
+
+               </select>
+
+             </div>
+           </div>
               <!-- <div class="col-span-12 sm:col-span-6">
                  <label for="modal-form-1" class="form-label">Placement Name</label>
                  <input id="sponsor" name="placement_id" type="text" class="form-control" placeholder="Enter Placement Name" required>
                     <div id="suggestUser"></div>
              </div> -->
-             <div class="col-span-12 sm:col-span-6">
-               <label class="modal-form-6">Select Placement</label>
+             <div class="col-span-12 sm:col-span-12">
+               <label class="modal-form-6"> Placement Id</label>
 
 
 
-                <div class="form-control"> <select name="placement_id"  data-placeholder="Select Placement" class="tom-select w-full">
-
-                  @if(Auth::user()->left_side==null || Auth::user()->middle_side==null || Auth::user()->right_side==null)
-                    <option  value="{{Auth::user()->id}}">{{Auth::user()->user_name}}</option>
-                    @else
-
-
-               @foreach($place as $p)
-
-
-                   <option  value="{{$p->id}}">{{$p->user_name}}</option>
-
-               @endforeach
-               @endif
-
-
-              </select>
+                <div class="form-control">
+                  <input type="text" name="placement_id" readonly id="placement_id" value="">
             </div>
           </div>
 
-              <div class="col-span-12 sm:col-span-12">
+              <!-- <div class="col-span-12 sm:col-span-12">
                 <label class="modal-form-6">Select Team</label>
 
 
@@ -94,7 +100,6 @@
                    @elseif(Auth::user()->middle_side==null)
                     <option value="2">Team B</option>
                   @else
-
                    @foreach($users as $user)
 
 
@@ -134,7 +139,7 @@
                </select>
 
              </div>
-           </div>
+           </div> -->
            <!-- <div class="col-span-12 sm:col-span-12">
              <label class="modal-form-6">Select Team</label>
 

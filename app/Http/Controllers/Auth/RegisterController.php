@@ -67,11 +67,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      
+
         $sponsor =  User::where('user_name','like', $data['sponsor'])->select('id','user_name')->first();
         if ($sponsor == null) {
             return response()->json(['success'=>'<span style="color: red;">User not found!!</span>'],200);
         }else {
+        //  dd($data);
           return User::create([
               'name' => $data['name'],
               'email' => $data['email'],

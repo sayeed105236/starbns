@@ -194,6 +194,7 @@ $('#position').on('change', function (e) {
         data: {sponsor: sponsor, position: position},
         //dataType: 'json',
         success: function (data) {
+          //alert('success');
             $('#placement_id').val(data);
             //location.reload();
         },
@@ -217,15 +218,15 @@ $("body").on("keyup", "#sponsor", function () {
             success: function (result) {
                 $('#suggestUser').html(result.success)
                 console.log(result.data)
-                // if (result.data) {
-                //     $("#position").val("");
-                //     $("#placement_id").val("");
-                //     $("#position").removeAttr('disabled');
-                // } else {
-                //     $("#position").val("");
-                //     $("#placement_id").val("");
-                //     $('#position').prop('disabled', true);
-                // }
+                if (result.data) {
+                    $("#position").val("");
+                    $("#placement_id").val("");
+                    $("#position").removeAttr('disabled');
+                } else {
+                    $("#position").val("");
+                    $("#placement_id").val("");
+                    $('#position').prop('disabled', true);
+                }
             }
         });
     }
