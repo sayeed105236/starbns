@@ -17,7 +17,7 @@ class ActivationController extends Controller
     public function activate(Request $request)
 
     {
-
+        dd($request->all());
       DB::beginTransaction();
     try {
       $data['deposit']=AddMoney::where('user_id',Auth::id())->first();
@@ -28,7 +28,7 @@ class ActivationController extends Controller
       if ($data['sum_deposit'] < $package->package_price ) {
           return back()->with('activation_failed', 'Insufficent Fund!!');
       }else {
-        //dd($request);
+
 
         $user_name= User::where('id',$request->user_id)->select('user_name')->first();
         $place= User::where('id',$request->placement_id)->select('user_name')->first();
@@ -264,9 +264,9 @@ class ActivationController extends Controller
 
     }
     public function checkPosition(Request $request){
-        //dd($request);
-        $userName = User::where('user_name','like',$request['sponsor'])->pluck('user_name')->first();
-        //dd($userName);
+        dd($request->all(),'easy');
+        $userName = User::where('user_name',$request['sponsor'])->pluck('user_name')->first();
+        dd($userName);
 
         $check_position = User::where('placement_id',$userName)->where('position',$request['position'])->orderBy('id','desc')->first();
         //dd($check_position);

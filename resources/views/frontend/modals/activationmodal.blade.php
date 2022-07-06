@@ -4,8 +4,9 @@
      <div class="modal-content">
        <form class="" action="{{route('activate-user')}}" method="post">
          @csrf
+
          <input type="hidden" name="user_id" value="{{$row->id}}">
-         <input type="hidden" id="sponsor" name="sponsor" value="{{$row->user_name}}">
+         <input type="text" id="sponsor" name="sponsor" value="{{$row->sponsor}}">
 
       <div class="modal-header">
         <h2 class="font-medium text-base mr-auto">Activate User </h2>
@@ -167,3 +168,51 @@
                               </div>
                                 </div>
                                </div>
+                               @push('scripts')
+                               <script type="text/javascript">
+                               $(document).ready(function () {
+                               //alert('getstatus');
+                               //select2Me('');
+                               });
+                               //$("#successMessage").delay(10000).slideUp(300);
+                               // $('#sponsor').on('change', function (e) {
+                               //
+                               //     $('#placement_id').val('');
+                               //     $("#position").select2("val", "");
+                               // });
+
+                               $('#position').on('change', function (e) {
+
+                               // var position = $(this).val();
+                               // if (position == '') {
+                               //     return false;
+                               // }
+                               var sponsor = $('#sponsor').val();
+                               alert('success');
+
+                               //var position=  $('#position').val();
+                               $.ajaxSetup({
+                               headers: {
+                               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                               }
+                               });
+                               $.ajax({
+                               //url: $(this).attr('action'),
+                               url: '{{route("referrals-checkposition")}}',
+                               type: 'POST',
+                               data: {sponsor: sponsor, position: position},
+                               //dataType: 'json',
+                               success: function (data) {
+                               //alert('success');
+                               $('#placement_id').val(data);
+                               //location.reload();
+                               },
+                               error: function (data) {
+                               console.log(data);
+                               }
+                               });
+
+                               });
+
+                               </script>
+                               @endpush
