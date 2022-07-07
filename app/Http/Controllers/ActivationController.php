@@ -29,17 +29,20 @@ class ActivationController extends Controller
           return back()->with('activation_failed', 'Insufficent Fund!!');
       }else {
 
-
+        //dd($request);
         $user_name= User::where('id',$request->user_id)->select('user_name')->first();
-        $place= User::where('id',$request->placement_id)->select('user_name')->first();
+        $place= User::where('user_name',$request->placement_id)->first();
+        //dd($place->user_name);
 
 
         $activate= User::find($request->user_id);
+        //dd($activate);
         $activate->placement_id= $place->user_name;
         $activate->position=$request->position;
-        //$activate->placement=$request->user_id;
+        $activate->placement_id=$place->user_name;
         $activate->status= 1;
         $activate->save();
+      //  dd($activate);
         $sponsor_count= User::where('sponsor',Auth::id())->count();
 
         if ( $sponsor_count > 19 ) {
@@ -48,10 +51,11 @@ class ActivationController extends Controller
           $membership->save();
 
         }
-        $check_position= User::where('id',$request->placement_id)->first();
-        //dd($check_position->left_side);
+        $check_position= User::where('id',$place->id)->first();
+        //dd($check_position);
 
-        $placement= User::find($request->placement_id);
+        $placement= User::find($check_position->id);
+        //dd($placement);
 
         if ($request->position==1) {
           if ($placement->left_side != null) {
@@ -79,6 +83,7 @@ class ActivationController extends Controller
 
         }
         $placement->save();
+        //dd($placement);
 
         $bal_ded= new AddMoney();
         $bal_ded->user_id= Auth::id();
