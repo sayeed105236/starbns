@@ -42,6 +42,10 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 Route::post('/home/get-sponsor', [RegisterController::class,'getSponsor'])->name('get-sponsor');
 Route::post('/home/get-user', [FrontendController::class,'getUser'])->name('get-user');
 Route::post('/home/get-placement', [ActivationController::class,'getPlacement'])->name('get-placement');
+
+
+
+Route::get('/home/user-activation/{id}', [FrontendController::class, 'UserActivation'])->middleware('auth');
 //user transaction history
 Route::get('/home/transactions/deposit/{id}', [TransactionController::class, 'Deposit'])->middleware('auth');
 Route::get('/home/transactions/transfer/{id}', [TransactionController::class, 'Transfer'])->middleware('auth');

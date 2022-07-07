@@ -94,9 +94,9 @@
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center">
                             @if($row->status == 0)
-                            <a href="#"  data-tw-toggle="modal" data-tw-target="#activationmodal{{$row->id}}" class="flex items-center mr-3" href="javascript:;"> <i data-feather="unlock" class="w-4 h-4 mr-1"></i> Activate </a>
+                            <a href="/home/user-activation/{{$row->id}}"   class="flex items-center mr-3" href="javascript:;"> <i data-feather="unlock" class="w-4 h-4 mr-1"></i> Activate </a>
                             <!-- <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal" data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a> -->
-                            @include('frontend.modals.activationmodal')
+
                             @else
                             <div class="flex items-center justify-center text-success"> <i data-feather="check-square" class="w-4 h-4 mr-2"></i> Already Activated </div>
                             @endif

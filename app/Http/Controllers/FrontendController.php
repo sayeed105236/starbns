@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Hash;
 
 class FrontendController extends Controller
 {
+
+    public function UserActivation($id)
+    {
+      $user= User::where('id',$id)->first();
+
+        return view('frontend.pages.user_activation',compact('user'));
+    }
     public function index($id)
     {
       $users= User::where('sponsor',Auth::id())->get();

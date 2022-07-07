@@ -1,11 +1,11 @@
 
- <div id="activationmodal{{$row->id}}" class="modal" tabindex="-1" aria-hidden="true">
+ <div  id="activationmodal" class="modal" tabindex="-1" aria-hidden="true">
    <div class="modal-dialog">
      <div class="modal-content">
        <form class="" action="{{route('activate-user')}}" method="post">
          @csrf
 
-         <input type="hidden" name="user_id" value="{{$row->id}}">
+         <input type="text" name="user_id" value="{{$row->id}}">
          <input type="text" id="sponsor" name="sponsor" value="{{$row->sponsor}}">
 
       <div class="modal-header">
@@ -183,12 +183,12 @@
 
                                $('#position').on('change', function (e) {
 
-                               // var position = $(this).val();
+                                var position = $(this).val();
                                // if (position == '') {
                                //     return false;
                                // }
                                var sponsor = $('#sponsor').val();
-                               alert('success');
+
 
                                //var position=  $('#position').val();
                                $.ajaxSetup({

@@ -17,7 +17,7 @@ class ActivationController extends Controller
     public function activate(Request $request)
 
     {
-        dd($request->all());
+        //dd($request->all());
       DB::beginTransaction();
     try {
       $data['deposit']=AddMoney::where('user_id',Auth::id())->first();
@@ -37,7 +37,7 @@ class ActivationController extends Controller
         $activate= User::find($request->user_id);
         $activate->placement_id= $place->user_name;
         $activate->position=$request->position;
-        $activate->placement=$request->user_id;
+        //$activate->placement=$request->user_id;
         $activate->status= 1;
         $activate->save();
         $sponsor_count= User::where('sponsor',Auth::id())->count();
@@ -264,9 +264,9 @@ class ActivationController extends Controller
 
     }
     public function checkPosition(Request $request){
-        dd($request->all(),'easy');
-        $userName = User::where('user_name',$request['sponsor'])->pluck('user_name')->first();
-        dd($userName);
+        //dd($request->all(),'easy');
+        $userName = User::where('id',$request['sponsor'])->pluck('user_name')->first();
+
 
         $check_position = User::where('placement_id',$userName)->where('position',$request['position'])->orderBy('id','desc')->first();
         //dd($check_position);
