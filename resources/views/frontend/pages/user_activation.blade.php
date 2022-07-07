@@ -54,8 +54,8 @@
         <form class="" action="{{route('activate-user')}}" method="post">
           @csrf
 
-          <input type="text" name="user_id" value="{{$user->id}}">
-          <input type="text" id="sponsor" name="sponsor" value="{{$user->sponsor}}">
+          <input type="hidden" name="user_id" value="{{$user->id}}">
+          <input type="hidden" id="sponsor" name="sponsor" value="{{$user->sponsor}}">
 
 
              <?php
@@ -71,7 +71,7 @@
                     <label class="modal-form-6">Select Package</label>
 
 
-                      <div class="form-control"> <select name="package_id"  data-placeholder="Select Package" class="tom-select w-full">
+                      <div class="form-control"> <select name="package_id"  data-placeholder="Select Package" class="tom-select w-full" required>
                     @foreach($package as $row)
                      <option  value="{{$row->id}}">{{$row->package_name}}({{$row->package_price}})</option>
                     @endforeach
@@ -83,7 +83,7 @@
                  <label class="modal-form-6">Select Team</label>
 
 
-                   <div class="form-control"> <select name="position" id="position"  data-placeholder="Select Position" class="tom-select w-full">
+                   <div class="form-control"> <select name="position" id="position"  data-placeholder="Select Position" class="tom-select w-full" required>
 
 
 
@@ -110,7 +110,7 @@
 
 
                  <div class="form-control">
-                   <input type="text" name="placement_id" readonly id="placement_id" value="">
+                   <input type="text" name="placement_id" readonly id="placement_id" value="" required>
              </div>
            </div>
 
